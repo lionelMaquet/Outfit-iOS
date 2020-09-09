@@ -76,18 +76,60 @@
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Outfit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWw-Z6-R9E">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJv-Ug-t2i">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tGG-ef-VOi" userLabel="mainTableView">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="tGG-ef-VOi" firstAttribute="top" secondItem="RJv-Ug-t2i" secondAttribute="top" id="Lo4-vM-bUr"/>
+                                            <constraint firstItem="tGG-ef-VOi" firstAttribute="leading" secondItem="RJv-Ug-t2i" secondAttribute="leading" id="ZcT-d4-ptg"/>
+                                            <constraint firstAttribute="trailing" secondItem="tGG-ef-VOi" secondAttribute="trailing" id="Zhh-on-BfF"/>
+                                            <constraint firstAttribute="bottom" secondItem="tGG-ef-VOi" secondAttribute="bottom" id="zWk-0B-hgo"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="RJv-Ug-t2i" firstAttribute="centerX" secondItem="iWw-Z6-R9E" secondAttribute="centerX" id="7Cq-GR-bsk"/>
+                                    <constraint firstAttribute="bottom" secondItem="RJv-Ug-t2i" secondAttribute="bottom" id="AMe-QJ-SFL"/>
+                                    <constraint firstAttribute="trailing" secondItem="RJv-Ug-t2i" secondAttribute="trailing" id="Tpa-ph-UfL"/>
+                                    <constraint firstItem="RJv-Ug-t2i" firstAttribute="bottom" secondItem="2Pf-6v-Ckd" secondAttribute="bottom" id="XbJ-nL-mBK"/>
+                                    <constraint firstItem="RJv-Ug-t2i" firstAttribute="leading" secondItem="iWw-Z6-R9E" secondAttribute="leading" id="fs4-z5-x8p"/>
+                                    <constraint firstItem="RJv-Ug-t2i" firstAttribute="top" secondItem="iWw-Z6-R9E" secondAttribute="top" id="pH7-sR-8kH"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="j4b-Wd-JWs"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="2Pf-6v-Ckd"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="iWw-Z6-R9E" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="00t-qp-1vh"/>
+                            <constraint firstItem="iWw-Z6-R9E" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3ed-jN-Oub"/>
+                            <constraint firstItem="iWw-Z6-R9E" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="P6o-jW-0nf"/>
+                            <constraint firstItem="iWw-Z6-R9E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m0F-Dr-ipV"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="JTo-Wi-T0O"/>
+                    <connections>
+                        <outlet property="mainTableView" destination="tGG-ef-VOi" id="FdC-fh-LPN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1961" y="138"/>
+            <point key="canvasLocation" x="1960.8695652173915" y="137.94642857142856"/>
         </scene>
         <!--Add-->
         <scene sceneID="YqL-it-B6P">
