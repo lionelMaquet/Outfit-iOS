@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="1070" y="3031"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="x5n-24-yzK">
             <objects>
-                <viewController id="ZmC-wx-g2O" sceneMemberID="viewController">
+                <viewController id="ZmC-wx-g2O" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Vv-rY-I2e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,10 +57,10 @@
             </objects>
             <point key="canvasLocation" x="1090" y="2339"/>
         </scene>
-        <!--View Controller-->
+        <!--Styles View Controller-->
         <scene sceneID="m9i-o9-6UF">
             <objects>
-                <viewController id="Bjv-ka-JFn" sceneMemberID="viewController">
+                <viewController id="Bjv-ka-JFn" customClass="StylesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bRP-b2-lMu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +76,7 @@
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Outfit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,7 +109,7 @@
         <!--Profile-->
         <scene sceneID="CwA-oy-t1R">
             <objects>
-                <viewController id="bCA-sv-j8g" sceneMemberID="viewController">
+                <viewController id="bCA-sv-j8g" customClass="AddViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4A-ja-QLn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -142,7 +142,7 @@
         <!--Favorites-->
         <scene sceneID="f7U-0G-gPe">
             <objects>
-                <viewController id="YXm-iR-jae" sceneMemberID="viewController">
+                <viewController id="YXm-iR-jae" customClass="FavoritesViewController" customModule="Outfit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mWv-mS-BpY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,6 +161,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xbK-hc-xqf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pGl-4S-LJL">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

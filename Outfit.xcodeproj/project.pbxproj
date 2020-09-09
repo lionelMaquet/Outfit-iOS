@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		E29FD41A25090FB000BFB8B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29FD41925090FB000BFB8B2 /* AppDelegate.swift */; };
 		E29FD41C25090FB000BFB8B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29FD41B25090FB000BFB8B2 /* SceneDelegate.swift */; };
-		E29FD41E25090FB000BFB8B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29FD41D25090FB000BFB8B2 /* ViewController.swift */; };
+		E29FD41E25090FB000BFB8B2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29FD41D25090FB000BFB8B2 /* HomeViewController.swift */; };
 		E29FD42125090FB000BFB8B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29FD41F25090FB000BFB8B2 /* Main.storyboard */; };
 		E29FD42325090FB100BFB8B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E29FD42225090FB100BFB8B2 /* Assets.xcassets */; };
 		E29FD42625090FB100BFB8B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E29FD42425090FB100BFB8B2 /* LaunchScreen.storyboard */; };
+		E29FD42E250915E700BFB8B2 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29FD42D250915E700BFB8B2 /* FavoritesViewController.swift */; };
+		E29FD4302509160000BFB8B2 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29FD42F2509160000BFB8B2 /* AddViewController.swift */; };
+		E29FD4322509161200BFB8B2 /* StylesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29FD4312509161200BFB8B2 /* StylesViewController.swift */; };
+		E29FD4342509162400BFB8B2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29FD4332509162400BFB8B2 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E29FD41625090FB000BFB8B2 /* Outfit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Outfit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E29FD41925090FB000BFB8B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E29FD41B25090FB000BFB8B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E29FD41D25090FB000BFB8B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E29FD41D25090FB000BFB8B2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E29FD42025090FB000BFB8B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E29FD42225090FB100BFB8B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E29FD42525090FB100BFB8B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E29FD42725090FB100BFB8B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E29FD42D250915E700BFB8B2 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		E29FD42F2509160000BFB8B2 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		E29FD4312509161200BFB8B2 /* StylesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylesViewController.swift; sourceTree = "<group>"; };
+		E29FD4332509162400BFB8B2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +66,33 @@
 			children = (
 				E29FD41925090FB000BFB8B2 /* AppDelegate.swift */,
 				E29FD41B25090FB000BFB8B2 /* SceneDelegate.swift */,
-				E29FD41D25090FB000BFB8B2 /* ViewController.swift */,
-				E29FD41F25090FB000BFB8B2 /* Main.storyboard */,
+				E29FD4352509167200BFB8B2 /* Controllers */,
+				E29FD4362509167800BFB8B2 /* Views */,
 				E29FD42225090FB100BFB8B2 /* Assets.xcassets */,
-				E29FD42425090FB100BFB8B2 /* LaunchScreen.storyboard */,
 				E29FD42725090FB100BFB8B2 /* Info.plist */,
 			);
 			path = Outfit;
+			sourceTree = "<group>";
+		};
+		E29FD4352509167200BFB8B2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E29FD41D25090FB000BFB8B2 /* HomeViewController.swift */,
+				E29FD4332509162400BFB8B2 /* ProfileViewController.swift */,
+				E29FD4312509161200BFB8B2 /* StylesViewController.swift */,
+				E29FD42F2509160000BFB8B2 /* AddViewController.swift */,
+				E29FD42D250915E700BFB8B2 /* FavoritesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E29FD4362509167800BFB8B2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E29FD42425090FB100BFB8B2 /* LaunchScreen.storyboard */,
+				E29FD41F25090FB000BFB8B2 /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +166,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29FD41E25090FB000BFB8B2 /* ViewController.swift in Sources */,
+				E29FD4302509160000BFB8B2 /* AddViewController.swift in Sources */,
+				E29FD41E25090FB000BFB8B2 /* HomeViewController.swift in Sources */,
+				E29FD4342509162400BFB8B2 /* ProfileViewController.swift in Sources */,
+				E29FD4322509161200BFB8B2 /* StylesViewController.swift in Sources */,
 				E29FD41A25090FB000BFB8B2 /* AppDelegate.swift in Sources */,
+				E29FD42E250915E700BFB8B2 /* FavoritesViewController.swift in Sources */,
 				E29FD41C25090FB000BFB8B2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
