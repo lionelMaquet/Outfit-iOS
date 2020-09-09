@@ -20,7 +20,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
-        mainTableView.rowHeight = 400
+        mainTableView.rowHeight = 500
+        
         
     }
     

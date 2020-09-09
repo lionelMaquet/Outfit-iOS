@@ -88,15 +88,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tGG-ef-VOi" userLabel="mainTableView">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                                <rect key="frame" x="20" y="0.0" width="374" height="725"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="tGG-ef-VOi" firstAttribute="top" secondItem="RJv-Ug-t2i" secondAttribute="top" id="Lo4-vM-bUr"/>
-                                            <constraint firstItem="tGG-ef-VOi" firstAttribute="leading" secondItem="RJv-Ug-t2i" secondAttribute="leading" id="ZcT-d4-ptg"/>
-                                            <constraint firstAttribute="trailing" secondItem="tGG-ef-VOi" secondAttribute="trailing" id="Zhh-on-BfF"/>
+                                            <constraint firstItem="tGG-ef-VOi" firstAttribute="leading" secondItem="RJv-Ug-t2i" secondAttribute="leading" constant="20" id="ZcT-d4-ptg"/>
+                                            <constraint firstAttribute="trailing" secondItem="tGG-ef-VOi" secondAttribute="trailing" constant="20" id="Zhh-on-BfF"/>
                                             <constraint firstAttribute="bottom" secondItem="tGG-ef-VOi" secondAttribute="bottom" id="zWk-0B-hgo"/>
                                         </constraints>
                                     </view>

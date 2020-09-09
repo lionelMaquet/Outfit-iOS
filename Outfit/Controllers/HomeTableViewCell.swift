@@ -21,7 +21,7 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        imageSlideShow.contentScaleMode = .scaleAspectFit
+        //imageSlideShow.contentScaleMode = .scaleAspectFill
         imageSlideShow.setImageInputs([
             ImageSource(image: UIImage(named: "example-image")!),
             ImageSource(image: UIImage(named: "example-image")!),
