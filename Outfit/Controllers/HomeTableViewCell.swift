@@ -8,13 +8,24 @@
 
 import UIKit
 import RatingControl
+import ImageSlideshow
 
 class HomeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var imageSlideShow: ImageSlideshow!
     @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var likeButton: UIButton!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imageSlideShow.setImageInputs([
+            ImageSource(image: UIImage(named: "example-image")!),
+            ImageSource(image: UIImage(named: "example-image")!),
+            ImageSource(image: UIImage(named: "example-image")!)
+        ])
         // Initialization code
     }
 
