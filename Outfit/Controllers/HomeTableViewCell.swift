@@ -21,12 +21,12 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imageSlideShow.contentScaleMode = .scaleAspectFit
         imageSlideShow.setImageInputs([
             ImageSource(image: UIImage(named: "example-image")!),
             ImageSource(image: UIImage(named: "example-image")!),
             ImageSource(image: UIImage(named: "example-image")!)
         ])
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
