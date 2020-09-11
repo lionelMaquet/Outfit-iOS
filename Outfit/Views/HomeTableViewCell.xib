@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-23-zw1">
-                        <rect key="frame" x="0.0" y="20" width="539" height="896"/>
+                        <rect key="frame" x="0.0" y="20" width="539" height="538"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="Ce5-Wh-Kz0" userLabel="profile and title stack view">
                                 <rect key="frame" x="0.0" y="0.0" width="539" height="40"/>
@@ -38,56 +38,30 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" customClass="ImageSlideshow" customModule="ImageSlideshow">
-                                <rect key="frame" x="0.0" y="60" width="539" height="700"/>
+                                <rect key="frame" x="0.0" y="60" width="539" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="700" id="dTJ-aP-c8f"/>
+                                    <constraint firstAttribute="height" constant="400" id="nVd-di-OaD"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tes tes tes t se tse t setes t se tes t set s t se tes t es tset" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-po-3DO">
-                                <rect key="frame" x="0.0" y="780" width="539" height="16"/>
+                                <rect key="frame" x="0.0" y="480" width="539" height="16"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="wLA-Bh-QTL" customClass="RatingControl" customModule="RatingControl">
-                                <rect key="frame" x="0.0" y="816" width="539" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cRD-t3-h2k"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="star" catalog="system"/>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="star.fill" catalog="system"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isContinuous" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vX6-1Z-mCh">
-                                <rect key="frame" x="0.0" y="856" width="539" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="eKt-Yy-sLR"/>
-                                </constraints>
-                                <state key="normal" image="heart" catalog="system"/>
+                                <rect key="frame" x="0.0" y="516" width="539" height="22"/>
+                                <state key="normal" image="heart" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
                             </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="FD7-VT-PGZ" firstAttribute="top" secondItem="Ce5-Wh-Kz0" secondAttribute="bottom" constant="20" id="DGe-Ty-knR"/>
-                            <constraint firstItem="wLA-Bh-QTL" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="DSw-Vi-n0i"/>
                             <constraint firstItem="JfH-po-3DO" firstAttribute="top" secondItem="FD7-VT-PGZ" secondAttribute="bottom" constant="20" id="IED-Bw-d3c"/>
-                            <constraint firstAttribute="trailing" secondItem="wLA-Bh-QTL" secondAttribute="trailing" id="Nss-nl-RP4"/>
                             <constraint firstItem="vX6-1Z-mCh" firstAttribute="centerX" secondItem="lhh-23-zw1" secondAttribute="centerX" id="RL6-FV-FVh"/>
                             <constraint firstAttribute="trailing" secondItem="FD7-VT-PGZ" secondAttribute="trailing" id="Yhl-SH-Cpy"/>
-                            <constraint firstItem="vX6-1Z-mCh" firstAttribute="top" secondItem="wLA-Bh-QTL" secondAttribute="bottom" constant="40" id="Z9M-FX-3gK"/>
                             <constraint firstItem="FD7-VT-PGZ" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="qTu-QA-xUE"/>
                             <constraint firstItem="JfH-po-3DO" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="stM-59-czW"/>
                             <constraint firstItem="Ce5-Wh-Kz0" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="uOz-wJ-Jrm"/>
@@ -107,7 +81,6 @@
                 <outlet property="likeButton" destination="vX6-1Z-mCh" id="osw-90-hw4"/>
                 <outlet property="profileImage" destination="jFs-xE-eEj" id="B4Z-RG-inv"/>
                 <outlet property="profileName" destination="B4y-RY-dUn" id="Z9E-mz-lc4"/>
-                <outlet property="ratingControl" destination="wLA-Bh-QTL" id="xhB-Qs-GTJ"/>
             </connections>
             <point key="canvasLocation" x="207.97101449275365" y="145.98214285714286"/>
         </tableViewCell>
@@ -115,7 +88,5 @@
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="star" catalog="system" width="128" height="116"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>
 </document>

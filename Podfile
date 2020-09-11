@@ -6,6 +6,5 @@ target 'Outfit' do
   use_frameworks!
 
   # Pods for Outfit
-  pod 'RatingControl', '~> 4.0.1'
   pod 'ImageSlideshow', '~> 1.9.0'
 end

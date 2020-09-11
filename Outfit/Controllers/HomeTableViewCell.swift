@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RatingControl
 import ImageSlideshow
 
 class HomeTableViewCell: UITableViewCell {
@@ -15,14 +14,13 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var imageSlideShow: ImageSlideshow!
-    @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var likeButton: UIButton!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imageSlideShow.currentSlideshowItem?.imageView.contentMode = .top
+        //imageSlideShow.currentSlideshowItem?.imageView.contentMode = .top
         imageSlideShow.contentScaleMode = .scaleAspectFit
         
         
