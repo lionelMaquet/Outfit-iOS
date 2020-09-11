@@ -11,6 +11,7 @@ import ImageSlideshow
 
 class HomeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var postStyle: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var imageSlideShow: ImageSlideshow!
@@ -25,7 +26,7 @@ class HomeTableViewCell: UITableViewCell {
         
         
         imageSlideShow.setImageInputs([
-            ImageSource(image: UIImage(named: "example-image")!),
+            ImageSource(image: UIImage(named: "example-profile-image")!),
             ImageSource(image: UIImage(named: "example-image")!),
             ImageSource(image: UIImage(named: "example-image")!)
         ])
