@@ -204,14 +204,44 @@
                     <view key="view" contentMode="scaleToFill" id="7Qs-xE-LRP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-zT-lyS">
+                                <rect key="frame" x="57" y="416" width="300" height="64"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mbl-H7-e0I">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="7iq-z2-PEg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifY-Jg-BTv">
+                                        <rect key="frame" x="0.0" y="34" width="300" height="30"/>
+                                        <state key="normal" title="Validate username"/>
+                                        <connections>
+                                            <action selector="validateUsernameButtonWasTapped:" destination="fUo-yq-nwa" eventType="touchUpInside" id="RYG-OF-kU8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ekb-zT-lyS" firstAttribute="centerX" secondItem="7Qs-xE-LRP" secondAttribute="centerX" id="2bn-5g-MjD"/>
+                            <constraint firstItem="ekb-zT-lyS" firstAttribute="centerY" secondItem="7Qs-xE-LRP" secondAttribute="centerY" id="N6U-uM-Bel"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="T9Q-N8-RVo"/>
                     </view>
                     <navigationItem key="navigationItem" id="dm9-Z2-Kyu"/>
+                    <connections>
+                        <outlet property="usernameTf" destination="mbl-H7-e0I" id="3UN-j9-rMd"/>
+                        <segue destination="xbK-hc-xqf" kind="show" identifier="goToHomeVC" id="LKD-MK-GLm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOw-8Q-GDd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113" y="-523"/>
+            <point key="canvasLocation" x="301" y="-606"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="2iP-9E-gb9">
@@ -304,6 +334,9 @@
             <point key="canvasLocation" x="-797.10144927536237" y="146.65178571428569"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="LKD-MK-GLm"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="110"/>

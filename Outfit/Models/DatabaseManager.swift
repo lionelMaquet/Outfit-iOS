@@ -52,10 +52,8 @@ struct DatabaseManager {
     
     
     func userHasAUsername() {
-        
-        
         if let mail = currentUserMail {
-            db.collection("users").whereField("mail",isEqualTo: mail).getDocuments { (querySnapshot, err) in
+            db.collection("users").whereField("id",isEqualTo: mail).getDocuments { (querySnapshot, err) in
                 if let err = err {
                     print("error getting documents \(err)")
                 } else {

@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBOutlet weak var mainTableView: UITableView!
-    
+    var dbManager: DatabaseManager?
     
     
     override func viewDidLoad() {

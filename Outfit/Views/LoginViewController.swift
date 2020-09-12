@@ -147,17 +147,13 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         // Handle error.
         print("Sign in with Apple errored: \(error)")
     }
-    
-    
-    
-    
+
 }
 
 extension LoginViewController: DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded: Bool) {
         if succeeded == true {
             self.performSegue(withIdentifier: "goToHomeVC", sender: self)
-            
         } else {
             self.performSegue(withIdentifier: "goToPickUsernameVC", sender: self)
         }
