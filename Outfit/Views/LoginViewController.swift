@@ -151,6 +151,10 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 }
 
 extension LoginViewController: DatabaseManagerDelegate {
+    func allPostsWereRetreived(posts: [Post]) {
+        
+    }
+    
     func triedToRetreiveUsername(succeeded: Bool) {
         if succeeded == true {
             self.performSegue(withIdentifier: "goToHomeVC", sender: self)
@@ -162,6 +166,11 @@ extension LoginViewController: DatabaseManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "goToPickUsernameVC" {
             let destinationVC = segue.destination as! PickUsernameViewController
+            destinationVC.dbManager = self.currentDBManager
+        }
+        
+        else if segue.identifier == "goToHomeVC" {
+            let destinationVC = segue.destination as! HomeViewController
             destinationVC.dbManager = self.currentDBManager
         }
 

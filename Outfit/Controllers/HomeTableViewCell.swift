@@ -17,8 +17,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var imageSlideShow: ImageSlideshow!
     @IBOutlet weak var likeButton: UIButton!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

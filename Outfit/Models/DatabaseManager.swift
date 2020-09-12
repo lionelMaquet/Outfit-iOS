@@ -11,6 +11,12 @@ import Firebase
 
 protocol DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded : Bool)
+    func allPostsWereRetreived(posts: [Post])
+}
+
+extension DatabaseManagerDelegate {
+    func triedToRetreiveUsername(succeeded : Bool){}
+    func allPostsWereRetreived(posts: Any?){}
 }
 
 struct DatabaseManager {
@@ -50,7 +56,6 @@ struct DatabaseManager {
         
     }
     
-    
     func userHasAUsername() {
         if let mail = currentUserMail {
             db.collection("users").whereField("id",isEqualTo: mail).getDocuments { (querySnapshot, err) in
@@ -64,9 +69,40 @@ struct DatabaseManager {
             }
             
         }
+
+    }
+    
+    func getAllPosts(){
+        for i in 0...100{
+            print("------HELLOoooo-------\n")
+        }
         
         
         
+        db.collection("posts").getDocuments { (snapshot, err) in
+            if let err = err {
+                print("error getting all posts")
+            } else {
+                let posts = self.transformDocumentsInPosts(docs: snapshot?.documents)
+                self.delegate?.allPostsWereRetreived(posts: posts)
+            }
+        }
+    }
+    
+    func transformDocumentsInPosts(docs : Any?) -> [Post] {
+        var posts : [Post] = []
+        let documents = docs as! [QueryDocumentSnapshot]
         
+        for i in 0...documents.count - 1 {
+            let username = documents[i]["username"] as! String
+            let description = documents[i]["description"] as! String
+            let commentCount = documents[i]["commentCount"] as! Int
+            let likeCount = documents[i]["likeCount"] as! Int
+            let imageURL = documents[i]["imageURL"] as! String
+            
+            
+            posts.append(Post(username: username, description: description, commentCount: commentCount, likeCount: likeCount, imageURL: imageURL)) 
+        }
+        return posts
     }
 }

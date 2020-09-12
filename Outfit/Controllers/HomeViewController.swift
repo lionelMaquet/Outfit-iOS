@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var mainTableView: UITableView!
     var dbManager: DatabaseManager?
+    var posts = [Post]()
     
     
     override func viewDidLoad() {
@@ -21,9 +22,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         mainTableView.dataSource = self
         mainTableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         mainTableView.rowHeight = 600
-        
-        
+        dbManager?.delegate = self
+        dbManager!.getAllPosts()
     }
+    
+    
     
    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -39,3 +42,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 }
 
+extension HomeViewController: DatabaseManagerDelegate {
+    func allPostsWereRetreived(posts: [Post]) {
+        for post in posts {
+            print(post.description)
+            print(post.imageURL)
+        }
+        mainTableView.reloadData()
+    }
+}
