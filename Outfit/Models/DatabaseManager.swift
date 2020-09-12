@@ -9,10 +9,23 @@
 import Foundation
 import Firebase
 
+protocol DatabaseManagerDelegate {
+    func triedToRetreiveUsername(succeeded : Bool)
+}
 
 struct DatabaseManager {
     let userID: String
     let db = Firestore.firestore()
+    var delegate : DatabaseManagerDelegate?
+    var currentUserMail : String? {
+        if let mail = Auth.auth().currentUser?.email {
+            return mail
+        } else {
+            print("ERROR : couldn't get user mail")
+            return "nomail"
+        }
+        
+    }
     
     func initialiseFirstTimeUser(username: String) {
         //SAVE DATA to google firestore
@@ -31,10 +44,31 @@ struct DatabaseManager {
                     DispatchQueue.main.async {
                         //self.delegate?.newUserWasCreated()
                     }
-                    
                 }
             }
         }
+        
+    }
+    
+    
+    func userHasAUsername() {
+        
+        
+        if let mail = currentUserMail {
+            db.collection("users").whereField("mail",isEqualTo: mail).getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("error getting documents \(err)")
+                } else {
+                    var numberOfDocs = querySnapshot?.documents.count
+                    let isUsernameCreated = numberOfDocs != 0
+                    self.delegate?.triedToRetreiveUsername(succeeded : isUsernameCreated)
+                }
+            }
+            
+        }
+        
+        
+        
         
     }
 }

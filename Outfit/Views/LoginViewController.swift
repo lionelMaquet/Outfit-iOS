@@ -14,8 +14,13 @@ import CryptoKit
 
 class LoginViewController: UIViewController {
     
+    
+    
+    
+    
     let db = Firestore.firestore()
     fileprivate var currentNonce : String?
+    var currentDBManager : DatabaseManager?
     
     
     @IBOutlet weak var loginProviderStackView: UIStackView!
@@ -94,6 +99,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
     
+
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else {
@@ -123,17 +129,15 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 // User is signed in to Firebase with Apple.
                 // ...
                 
+                self.currentDBManager = DatabaseManager(userID: idTokenString, delegate: self)
                 
-                if appleIDCredential.email != nil {
-                    let dbManager = DatabaseManager(userID: idTokenString)
-                    dbManager.initialiseFirstTimeUser(username: "liolio111")
-                    
-                    
-                    
-                } else {
-                    // not a first time user !
-                }
+                // way of knowing if user has already initialised his account
+                // with a username
+                self.currentDBManager?.userHasAUsername()
+            
             }
+            
+            
             
             
         }
@@ -144,6 +148,28 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         print("Sign in with Apple errored: \(error)")
     }
     
+    
+    
+    
+}
+
+extension LoginViewController: DatabaseManagerDelegate {
+    func triedToRetreiveUsername(succeeded: Bool) {
+        if succeeded == true {
+            self.performSegue(withIdentifier: "goToHomeVC", sender: self)
+            
+        } else {
+            self.performSegue(withIdentifier: "goToPickUsernameVC", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == "goToPickUsernameVC" {
+            let destinationVC = segue.destination as! PickUsernameViewController
+            destinationVC.dbManager = self.currentDBManager
+        }
+
+    }
 }
 
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {

@@ -197,6 +197,22 @@
             </objects>
             <point key="canvasLocation" x="1961" y="894"/>
         </scene>
+        <!--Pick Username View Controller-->
+        <scene sceneID="AkK-vL-i3L">
+            <objects>
+                <viewController id="fUo-yq-nwa" customClass="PickUsernameViewController" customModule="Outfit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Qs-xE-LRP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="T9Q-N8-RVo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dm9-Z2-Kyu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XOw-8Q-GDd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="113" y="-523"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="2iP-9E-gb9">
             <objects>
@@ -219,7 +235,8 @@
                     <navigationItem key="navigationItem" id="ixe-E1-sii"/>
                     <connections>
                         <outlet property="loginProviderStackView" destination="gOL-5R-JG2" id="Va9-mY-ZAr"/>
-                        <segue destination="xbK-hc-xqf" kind="show" id="ECm-b9-gAD"/>
+                        <segue destination="fUo-yq-nwa" kind="show" identifier="goToPickUsernameVC" id="X4V-LK-fi2"/>
+                        <segue destination="xbK-hc-xqf" kind="show" identifier="goToHomeVC" id="hGO-Wd-Ouc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6gt-PI-1Fe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
