@@ -7,4 +7,7 @@ target 'Outfit' do
 
   # Pods for Outfit
   pod 'ImageSlideshow', '~> 1.9.0'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
 end
