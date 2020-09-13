@@ -132,8 +132,11 @@ into your career, it’s always a win..."</string>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="commentCount" destination="gpo-C3-JBn" id="m5B-po-VXx"/>
+                <outlet property="descriptionLabel" destination="JfH-po-3DO" id="ytY-kZ-2fx"/>
                 <outlet property="imageSlideShow" destination="FD7-VT-PGZ" id="rXF-mQ-A0i"/>
                 <outlet property="likeButton" destination="vX6-1Z-mCh" id="osw-90-hw4"/>
+                <outlet property="likeCount" destination="g7b-5J-shR" id="7lx-U2-N8n"/>
                 <outlet property="postStyle" destination="TL1-mv-1bN" id="png-vC-h4O"/>
                 <outlet property="profileImage" destination="jFs-xE-eEj" id="B4Z-RG-inv"/>
                 <outlet property="profileName" destination="B4y-RY-dUn" id="Z9E-mz-lc4"/>

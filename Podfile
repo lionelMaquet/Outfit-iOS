@@ -10,4 +10,5 @@ target 'Outfit' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
+  pod 'Kingfisher', '~> 5.15'
 end

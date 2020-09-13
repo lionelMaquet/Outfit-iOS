@@ -8,6 +8,9 @@
 
 import Foundation
 import Firebase
+import Kingfisher
+
+
 
 protocol DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded : Bool)
@@ -16,12 +19,13 @@ protocol DatabaseManagerDelegate {
 
 extension DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded : Bool){}
-    func allPostsWereRetreived(posts: Any?){}
+    func allPostsWereRetreived(posts: [Post]){}
 }
 
 struct DatabaseManager {
     let userID: String
     let db = Firestore.firestore()
+    let storage = Storage.storage()
     var delegate : DatabaseManagerDelegate?
     var currentUserMail : String? {
         if let mail = Auth.auth().currentUser?.email {
@@ -73,12 +77,6 @@ struct DatabaseManager {
     }
     
     func getAllPosts(){
-        for i in 0...100{
-            print("------HELLOoooo-------\n")
-        }
-        
-        
-        
         db.collection("posts").getDocuments { (snapshot, err) in
             if let err = err {
                 print("error getting all posts")
@@ -105,4 +103,5 @@ struct DatabaseManager {
         }
         return posts
     }
+    
 }

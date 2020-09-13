@@ -28,26 +28,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as? HomeTableViewCell
+        cell!.post = self.posts[indexPath.row]
+        cell?.dbManager = self.dbManager
+        return cell!
     }
     
     
-
-
+    
+    
 }
 
 extension HomeViewController: DatabaseManagerDelegate {
     func allPostsWereRetreived(posts: [Post]) {
-        for post in posts {
-            print(post.description)
-            print(post.imageURL)
-        }
+        self.posts = posts
         mainTableView.reloadData()
     }
 }
