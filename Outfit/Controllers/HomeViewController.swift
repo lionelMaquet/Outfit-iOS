@@ -48,6 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension HomeViewController: DatabaseManagerDelegate {
     func allPostsWereRetreived(posts: [Post]) {
         self.posts = posts
+        print("here: ", posts[0])
         mainTableView.reloadData()
     }
 }

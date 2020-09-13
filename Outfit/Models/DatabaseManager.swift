@@ -15,18 +15,27 @@ import Kingfisher
 protocol DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded : Bool)
     func allPostsWereRetreived(posts: [Post])
+    //func profileWasFetched(user: User)
 }
 
 extension DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded : Bool){}
     func allPostsWereRetreived(posts: [Post]){}
+    func profileWasFetched(user: User){}
 }
 
-struct DatabaseManager {
+class DatabaseManager {
+    
+    init(userID: String){
+        self.userID = userID
+    }
+    
+    
     let userID: String
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var delegate : DatabaseManagerDelegate?
+    var currentPosts = [Post]()
     var currentUserMail : String? {
         if let mail = Auth.auth().currentUser?.email {
             return mail
@@ -52,7 +61,6 @@ struct DatabaseManager {
                 } else {
                     print("Successfully saved data.")
                     DispatchQueue.main.async {
-                        //self.delegate?.newUserWasCreated()
                     }
                 }
             }
@@ -76,13 +84,48 @@ struct DatabaseManager {
 
     }
     
+    func getProfileDetails(userID: String) {
+        db.collection("users").whereField("id",isEqualTo: userID).getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print("error getting documents \(err)")
+            } else {
+                let data = querySnapshot?.documents[0].data()
+                let id = data!["id"] as! String
+                let imageURL = data!["imageURL"] as! String
+                let username = data!["username"] as! String
+                let user = User(userID: id, imageURL: imageURL, username: username)
+                self.delegate?.profileWasFetched(user: user)
+            }
+        }
+    }
+    
     func getAllPosts(){
         db.collection("posts").getDocuments { (snapshot, err) in
             if let err = err {
                 print("error getting all posts")
             } else {
                 let posts = self.transformDocumentsInPosts(docs: snapshot?.documents)
-                self.delegate?.allPostsWereRetreived(posts: posts)
+                self.currentPosts = posts
+                self.fillCurrentPostsUserDetails()
+            }
+        }
+    }
+    
+    
+    
+    func fillCurrentPostsUserDetails(){
+        for i in 0...currentPosts.count - 1 {
+            db.collection("users").whereField("id",isEqualTo: currentPosts[i].userID).getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("error getting documents \(err)")
+                } else {
+                    let data = querySnapshot?.documents[0].data()
+                    let id = data!["id"] as! String
+                    let imageURL = data!["imageURL"] as! String
+                    let username = data!["username"] as! String
+                    self.currentPosts[i].user = User(userID: id, imageURL: imageURL, username: username)
+                    self.delegate?.allPostsWereRetreived(posts: self.currentPosts)
+                }
             }
         }
     }
@@ -92,14 +135,14 @@ struct DatabaseManager {
         let documents = docs as! [QueryDocumentSnapshot]
         
         for i in 0...documents.count - 1 {
-            let username = documents[i]["username"] as! String
+            let userID = documents[i]["userID"] as! String
             let description = documents[i]["description"] as! String
             let commentCount = documents[i]["commentCount"] as! Int
             let likeCount = documents[i]["likeCount"] as! Int
             let imageURL = documents[i]["imageURL"] as! String
             
             
-            posts.append(Post(username: username, description: description, commentCount: commentCount, likeCount: likeCount, imageURL: imageURL)) 
+            posts.append(Post(userID: userID, description: description, commentCount: commentCount, likeCount: likeCount, imageURL: imageURL))
         }
         return posts
     }

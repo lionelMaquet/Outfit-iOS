@@ -10,10 +10,11 @@ import Foundation
 import UIKit
 
 struct Post {
-    let username: String
-    let description: String
-    let commentCount: Int
-    let likeCount: Int
-    let imageURL: String
+    var userID: String
+    var user: User?
+    var description: String
+    var commentCount: Int
+    var likeCount: Int
+    var imageURL: String
     
 }

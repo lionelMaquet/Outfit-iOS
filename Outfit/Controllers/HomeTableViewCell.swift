@@ -23,11 +23,14 @@ class HomeTableViewCell: UITableViewCell {
     var post: Post?
     
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         imageSlideShow.contentScaleMode = .scaleAspectFit
         dbManager?.delegate = self
+        dbManager?.getProfileDetails(userID: post!.userID)
+        
         
     }
     
@@ -36,8 +39,9 @@ class HomeTableViewCell: UITableViewCell {
         likeCount.text = "\(post!.likeCount)"
         commentCount.text = "\(post!.commentCount)"
         descriptionLabel.text = post!.description
-        profileName.text = post!.username
-        setImage()
+        profileName.text = post?.user?.username
+        setPostImage()
+        setProfileImage()
 
     }
     
@@ -45,14 +49,27 @@ class HomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setImage(){
+    
+    
+    func setPostImage(){
         let url = URL(string: post!.imageURL)
         let data = (try? Data(contentsOf: url!))!
         imageSlideShow.setImageInputs([
             ImageSource(image: (UIImage(data:data))!)
         ])
     }
+    
+    func setProfileImage(){
+        let url = URL(string: post!.user!.imageURL)
+        let data = (try? Data(contentsOf: url!))!
+        let profileImage = UIImage(data: data)
+        self.profileImage.image = profileImage
+    }
 }
 
 extension HomeTableViewCell: DatabaseManagerDelegate {
+    func profileWasFetched(user: User) {
+        print("here", user.username)
+        
+    }
 }
