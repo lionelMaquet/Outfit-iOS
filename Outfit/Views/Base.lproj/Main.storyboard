@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fwe-PP-AN1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Flu-a7-7Fx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -267,6 +267,7 @@
                         <outlet property="loginProviderStackView" destination="gOL-5R-JG2" id="Va9-mY-ZAr"/>
                         <segue destination="fUo-yq-nwa" kind="show" identifier="goToPickUsernameVC" id="X4V-LK-fi2"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToHomeVC" id="ZZw-cn-PrC"/>
+                        <segue destination="xbK-hc-xqf" kind="push" identifier="goToTabBarController" id="L22-f9-k9B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6gt-PI-1Fe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -299,6 +300,7 @@
         <!--Home-->
         <scene sceneID="2cY-vk-ga4">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N98-ov-roX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ioH-tK-orD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="Zlz-mY-PFG"/>
                     <toolbarItems/>
@@ -312,7 +314,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="wAc-4b-jeh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N98-ov-roX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1952.1739130434785" y="137.94642857142856"/>
         </scene>
@@ -336,6 +337,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="L22-f9-k9B"/>
         <segue reference="ZZw-cn-PrC"/>
     </inferredMetricsTieBreakers>
     <resources>

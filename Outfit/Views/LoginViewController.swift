@@ -151,13 +151,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 }
 
 extension LoginViewController: DatabaseManagerDelegate {
-    func allPostsWereRetreived(posts: [Post]) {
-        
-    }
+    
     
     func triedToRetreiveUsername(succeeded: Bool) {
         if succeeded == true {
-            self.performSegue(withIdentifier: "goToHomeVC", sender: self)
+            self.performSegue(withIdentifier: "goToTabBarController", sender: self)
         } else {
             self.performSegue(withIdentifier: "goToPickUsernameVC", sender: self)
         }
@@ -169,11 +167,11 @@ extension LoginViewController: DatabaseManagerDelegate {
             destinationVC.dbManager = self.currentDBManager
         }
         
-        else if segue.identifier == "goToHomeVC" {
-            let destinationVC = segue.destination as! HomeViewController
-            destinationVC.dbManager = self.currentDBManager
+        else if segue.identifier == "goToTabBarController" {
+            let destinationVC = segue.destination as! UITabBarController
+            let homeVC = destinationVC.viewControllers![0].children[0] as! HomeViewController
+            homeVC.dbManager = self.currentDBManager
         }
-
     }
 }
 
