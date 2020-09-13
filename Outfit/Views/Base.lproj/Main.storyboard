@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Flu-a7-7Fx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fwe-PP-AN1">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -82,13 +82,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWw-Z6-R9E">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJv-Ug-t2i">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tGG-ef-VOi" userLabel="mainTableView">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="774"/>
+                                                <rect key="frame" x="20" y="0.0" width="374" height="725"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </tableView>
                                         </subviews>
@@ -202,11 +202,11 @@
             <objects>
                 <viewController id="fUo-yq-nwa" customClass="PickUsernameViewController" customModule="Outfit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Qs-xE-LRP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ekb-zT-lyS">
-                                <rect key="frame" x="57" y="416" width="300" height="64"/>
+                                <rect key="frame" x="57" y="389" width="300" height="64"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mbl-H7-e0I">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
@@ -251,13 +251,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gOL-5R-JG2">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gOL-5R-JG2">
                                 <rect key="frame" x="0.0" y="248" width="414" height="400"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="gOL-5R-JG2" firstAttribute="top" secondItem="Nu2-B4-MvK" secondAttribute="top" constant="204" id="4Ma-xB-T4f"/>
                             <constraint firstItem="gOL-5R-JG2" firstAttribute="centerY" secondItem="NAn-OU-rhB" secondAttribute="centerY" id="A4G-5w-crW"/>
+                            <constraint firstItem="gOL-5R-JG2" firstAttribute="leading" secondItem="Nu2-B4-MvK" secondAttribute="leading" id="kn7-1u-eb8"/>
                             <constraint firstItem="gOL-5R-JG2" firstAttribute="centerX" secondItem="NAn-OU-rhB" secondAttribute="centerX" id="sdS-eM-2cE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nu2-B4-MvK"/>
@@ -266,8 +268,7 @@
                     <connections>
                         <outlet property="loginProviderStackView" destination="gOL-5R-JG2" id="Va9-mY-ZAr"/>
                         <segue destination="fUo-yq-nwa" kind="show" identifier="goToPickUsernameVC" id="X4V-LK-fi2"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="goToHomeVC" id="ZZw-cn-PrC"/>
-                        <segue destination="xbK-hc-xqf" kind="push" identifier="goToTabBarController" id="L22-f9-k9B"/>
+                        <segue destination="xbK-hc-xqf" kind="presentation" identifier="goToTabBarController" modalPresentationStyle="fullScreen" id="L22-f9-k9B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6gt-PI-1Fe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -304,7 +305,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ioH-tK-orD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="Zlz-mY-PFG"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="45N-rK-VsX"/>
+                    <navigationItem key="navigationItem" id="45N-rK-VsX">
+                        <barButtonItem key="backBarButtonItem" title="hello" id="KLZ-cT-oR3"/>
+                    </navigationItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i0e-yg-Xsj">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -317,28 +320,9 @@
             </objects>
             <point key="canvasLocation" x="1952.1739130434785" y="137.94642857142856"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="hRP-fu-pCQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Flu-a7-7Fx" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ty7-l8-g5l">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fwe-PP-AN1" kind="relationship" relationship="rootViewController" id="URC-UH-MWT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9dC-CW-Dro" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-797.10144927536237" y="146.65178571428569"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="L22-f9-k9B"/>
-        <segue reference="ZZw-cn-PrC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
