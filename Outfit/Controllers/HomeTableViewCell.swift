@@ -26,12 +26,9 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         imageSlideShow.contentScaleMode = .scaleAspectFit
         dbManager?.delegate = self
         dbManager?.getProfileDetails(userID: post!.userID)
-        
-        
     }
     
     override func layoutSubviews() {
@@ -40,9 +37,9 @@ class HomeTableViewCell: UITableViewCell {
         commentCount.text = "\(post!.commentCount)"
         descriptionLabel.text = post!.description
         profileName.text = post?.user?.username
+        postStyle.text = StyleManager.getName(styleID: post?.styleID ?? "0")
         setPostImage()
         setProfileImage()
-
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -70,6 +67,5 @@ class HomeTableViewCell: UITableViewCell {
 extension HomeTableViewCell: DatabaseManagerDelegate {
     func profileWasFetched(user: User) {
         print("here", user.username)
-        
     }
 }
