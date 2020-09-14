@@ -20,4 +20,8 @@ struct Post {
     var sexe: String
     var season: String
     
+    var styleName: String {
+        return Style(sexe: self.sexe, season: self.season, style: self.style).name
+    }
+    
 }
