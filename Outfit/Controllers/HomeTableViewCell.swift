@@ -21,6 +21,12 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     var dbManager: DatabaseManager?
     var post: Post?
+    var currentPostStyle: Style? {
+        if let sexe = self.post?.sexe, let season = self.post?.season, let style = self.post?.style {
+            return Style(sexe: sexe, season: season, style: style)
+        }
+        return nil
+    }
     
     
     
@@ -37,7 +43,7 @@ class HomeTableViewCell: UITableViewCell {
         commentCount.text = "\(post!.commentCount)"
         descriptionLabel.text = post!.description
         profileName.text = post?.user?.username
-        postStyle.text = StyleManager.getName(styleID: post?.styleID ?? "0")
+        postStyle.text = StyleManager.getName(style: currentPostStyle!)
         setPostImage()
         setProfileImage()
     }

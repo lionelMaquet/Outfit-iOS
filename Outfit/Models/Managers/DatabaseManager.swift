@@ -140,9 +140,11 @@ class DatabaseManager {
             let commentCount = documents[i]["commentCount"] as! Int
             let likeCount = documents[i]["likeCount"] as! Int
             let imageURL = documents[i]["imageURL"] as! String
-            let styleID = documents[i]["styleID"] as! String
+            let sexe = documents[i]["sexe"] as! String
+            let season = documents[i]["season"] as! String
+            let style = documents[i]["style"] as! String
             
-            posts.append(Post(userID: userID, description: description, commentCount: commentCount, likeCount: likeCount, imageURL: imageURL, styleID: styleID))
+            posts.append(Post(userID: userID, description: description, commentCount: commentCount, likeCount: likeCount, imageURL: imageURL, style: style, sexe: sexe, season: season ))
         }
         return posts
     }
