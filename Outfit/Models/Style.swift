@@ -69,4 +69,49 @@ struct Style {
         
         return name
     }
+    
+    static func fromEnglishStrings(style: String, sexe: String, season: String) -> Style {
+        var styleFromString = ""
+        var seasonFromString = ""
+        var sexeFromString = ""
+        
+        switch style {
+        case "1":
+            styleFromString = "Classic"
+        case "1":
+        styleFromString = "Casual"
+        case "1":
+        styleFromString = "Streetswear"
+        case "1":
+        styleFromString = "Sportswear"
+            case "1":
+        styleFromString = "Classy"
+        default:
+            ""
+        }
+        
+        switch sexe {
+        case "Men":
+            sexeFromString = "1"
+        case "Women":
+        sexeFromString = "2"
+        case "Boys":
+        sexeFromString = "3"
+            case "Girls":
+            sexeFromString = "4"
+        default:
+            ""
+        }
+        
+        switch season {
+        case "Summer/Spring":
+            seasonFromString = "1"
+        case "Winter/Autumn":
+        seasonFromString = "2"
+        default:
+            ""
+        }
+        
+        return Style(sexe: sexeFromString, season: seasonFromString, style: styleFromString)
+    }
 }

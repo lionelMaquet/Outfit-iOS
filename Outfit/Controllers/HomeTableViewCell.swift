@@ -22,9 +22,6 @@ class HomeTableViewCell: UITableViewCell {
     var dbManager: DatabaseManager?
     var post: Post?
     
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         imageSlideShow.contentScaleMode = .scaleAspectFit
