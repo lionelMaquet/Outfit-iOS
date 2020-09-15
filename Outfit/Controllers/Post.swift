@@ -15,7 +15,7 @@ struct Post {
     var description: String
     var commentCount: Int
     var likeCount: Int
-    var imageURL: String
+    var imageURL: String?
     var style: String
     var sexe: String
     var season: String

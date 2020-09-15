@@ -9,26 +9,26 @@
 import Foundation
 
 /*
-
-SEXES
-1 = Men
-2 = Women
-3 = Boys
-4 = Girls
-
-SEASONS
-1 = Summer/Spring -> 1 in db
-2 = Autumn/Winter -> 2 in db
-
-STYLES
-1 = Classic
-2 = Casual
-3 = Streetswear
-4 = Sportswear
-5 = Classy
-
-
-*/
+ 
+ SEXES
+ 1 = Men
+ 2 = Women
+ 3 = Boys
+ 4 = Girls
+ 
+ SEASONS
+ 1 = Summer/Spring -> 1 in db
+ 2 = Autumn/Winter -> 2 in db
+ 
+ STYLES
+ 1 = Classic
+ 2 = Casual
+ 3 = Streetswear
+ 4 = Sportswear
+ 5 = Classy
+ 
+ 
+ */
 
 
 struct Style {
@@ -76,16 +76,16 @@ struct Style {
         var sexeFromString = ""
         
         switch style {
-        case "1":
-            styleFromString = "Classic"
-        case "1":
-        styleFromString = "Casual"
-        case "1":
-        styleFromString = "Streetswear"
-        case "1":
-        styleFromString = "Sportswear"
-            case "1":
-        styleFromString = "Classy"
+        case "Classic":
+            styleFromString = "1"
+        case "Casual":
+            styleFromString = "2"
+        case "Streetswear":
+            styleFromString = "3"
+        case "Sportswear":
+            styleFromString = "4"
+        case "Classy":
+            styleFromString = "5"
         default:
             ""
         }
@@ -94,10 +94,10 @@ struct Style {
         case "Men":
             sexeFromString = "1"
         case "Women":
-        sexeFromString = "2"
+            sexeFromString = "2"
         case "Boys":
-        sexeFromString = "3"
-            case "Girls":
+            sexeFromString = "3"
+        case "Girls":
             sexeFromString = "4"
         default:
             ""
@@ -107,7 +107,7 @@ struct Style {
         case "Summer/Spring":
             seasonFromString = "1"
         case "Winter/Autumn":
-        seasonFromString = "2"
+            seasonFromString = "2"
         default:
             ""
         }

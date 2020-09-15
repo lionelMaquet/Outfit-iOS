@@ -128,7 +128,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 }
                 // User is signed in to Firebase with Apple.
                 // ...
-                
+                print("userID", idTokenString)
+                sharedDatabaseManager = DatabaseManager(userID: idTokenString)
                 self.currentDBManager = DatabaseManager(userID: idTokenString)
                 self.currentDBManager!.delegate = self
                 

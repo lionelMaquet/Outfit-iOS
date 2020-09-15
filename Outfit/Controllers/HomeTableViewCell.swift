@@ -47,7 +47,7 @@ class HomeTableViewCell: UITableViewCell {
     
     
     func setPostImage(){
-        let url = URL(string: post!.imageURL)
+        let url = URL(string: post!.imageURL!)
         let data = (try? Data(contentsOf: url!))!
         imageSlideShow.setImageInputs([
             ImageSource(image: (UIImage(data:data))!)

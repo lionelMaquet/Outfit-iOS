@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import Kingfisher
 
-
+var sharedDatabaseManager: DatabaseManager?
 
 protocol DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded : Bool)
@@ -36,6 +36,7 @@ class DatabaseManager {
     let storage = Storage.storage()
     var delegate : DatabaseManagerDelegate?
     var currentPosts = [Post]()
+    var completedPosts = [Post]()
     var currentUserMail : String? {
         if let mail = Auth.auth().currentUser?.email {
             return mail
@@ -81,7 +82,7 @@ class DatabaseManager {
             }
             
         }
-
+        
     }
     
     func getProfileDetails(userID: String) {
@@ -124,7 +125,8 @@ class DatabaseManager {
                     let imageURL = data!["imageURL"] as! String
                     let username = data!["username"] as! String
                     self.currentPosts[i].user = User(userID: id, imageURL: imageURL, username: username)
-                    self.delegate?.allPostsWereRetreived(posts: self.currentPosts)
+                    self.completedPosts.append(self.currentPosts[i])
+                    self.delegate?.allPostsWereRetreived(posts: self.completedPosts)
                 }
             }
         }
@@ -147,6 +149,81 @@ class DatabaseManager {
             posts.append(Post(userID: userID, description: description, commentCount: commentCount, likeCount: likeCount, imageURL: imageURL, style: style, sexe: sexe, season: season ))
         }
         return posts
+    }
+    
+    func uploadImageAndPost(post: Post, image: UIImage){
+        uploadMedia(image: image) { (uploadedImageURL) in
+            let completedPost = Post(userID: post.userID, user: post.user, description: post.description, commentCount: post.commentCount, likeCount: post.likeCount, imageURL: uploadedImageURL, style: post.style, sexe: post.sexe, season: post.season)
+            self.uploadPost(post: completedPost)
+        }
+    }
+    
+    func uploadPost(post: Post){
+        
+        self.db.collection("posts").addDocument(data: [ // Ajoute un document à la collection
+            
+            "commentCount" : post.commentCount,
+            "description" : post.description,
+            "imageURL" : post.imageURL,
+            "likeCount" : post.likeCount,
+            "season" : post.season,
+            "sexe" : post.sexe,
+            "style" : post.style,
+            "userID" : post.userID
+            
+            
+            
+        ]) { (error) in
+            if let e = error {
+                print("There was an issue saving data to firestore, \(e)")
+            } else {
+                print("Successfully saved data.")
+                DispatchQueue.main.async {
+                }
+            }
+        }
+        
+    }
+    
+    func uploadMedia(image: UIImage, completion: @escaping (_ url: String?) -> Void) {
+        
+        let storageRef = Storage.storage().reference().child("\(self.randomStringWithLength(len: 15)).jpg")
+        if let uploadData = image.jpegData(compressionQuality: 0.5) {
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil {
+                    print("error")
+                    completion(nil)
+                } else {
+                    
+                    storageRef.downloadURL(completion: { (url, error) in
+                        
+                        print(url?.absoluteString)
+                        completion(url?.absoluteString)
+                    })
+                    
+                    //  completion((metadata?.downloadURL()?.absoluteString)!))
+                    // your uploaded photo url.
+                    
+                    
+                }
+            }
+        }
+    }
+    
+    func randomStringWithLength (len : Int) -> NSString {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        
+        var randomString : NSMutableString = NSMutableString(capacity: len)
+        
+        for i in 0...len {
+            var length = UInt32 (letters.length)
+            var rand = arc4random_uniform(length)
+            randomString.appendFormat("%C", letters.character(at: Int(rand)))
+        }
+        
+
+        return randomString
     }
     
 }
