@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PullToRefresh
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,6 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var mainTableView: UITableView!
     var dbManager: DatabaseManager?
     var posts = [Post]()
+    let refresher = PullToRefresh()
     
     
     override func viewDidLoad() {
@@ -25,6 +27,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         mainTableView.rowHeight = 600
         dbManager?.delegate = self
         dbManager!.getAllPosts()
+        mainTableView.addPullToRefresh(refresher) {
+            self.dbManager?.getAllPosts()
+        }
+        mainTableView.refresher(at: .top)?.setEnable(isEnabled: true)
+        
     }
     
     
@@ -40,7 +47,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell!
     }
     
-    
+    deinit {
+        mainTableView.removeAllPullToRefresh()
+    }
     
     
 }
@@ -48,7 +57,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension HomeViewController: DatabaseManagerDelegate {
     func allPostsWereRetreived(posts: [Post]) {
         self.posts = posts
-        print("here: ", posts[0])
+        
+        mainTableView.endRefreshing(at: .top)
+        
+        
         mainTableView.reloadData()
+        
     }
 }

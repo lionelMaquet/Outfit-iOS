@@ -126,11 +126,22 @@ class DatabaseManager {
                     let username = data!["username"] as! String
                     self.currentPosts[i].user = User(userID: id, imageURL: imageURL, username: username)
                     self.completedPosts.append(self.currentPosts[i])
-                    self.delegate?.allPostsWereRetreived(posts: self.completedPosts)
+                    
+                    if (self.currentPosts.count == self.completedPosts.count){
+                        self.delegate?.allPostsWereRetreived(posts: self.completedPosts)
+                        self.currentPosts = []
+                        self.completedPosts = []
+                    }
+                    
+                    
+                    
+                    
                 }
             }
         }
     }
+    
+    
     
     func transformDocumentsInPosts(docs : Any?) -> [Post] {
         var posts : [Post] = []
