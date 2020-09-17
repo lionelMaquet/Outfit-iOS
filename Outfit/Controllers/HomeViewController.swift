@@ -25,8 +25,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         mainTableView.dataSource = self
         mainTableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         mainTableView.rowHeight = 600
+        self.dbManager!.getAllPosts()
         dbManager?.delegate = self
-        dbManager!.getAllPosts()
+        
         mainTableView.addPullToRefresh(refresher) {
             self.dbManager?.getAllPosts()
         }

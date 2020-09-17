@@ -10,7 +10,7 @@ import UIKit
 import ImageSlideshow
 
 class HomeTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var commentCount: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -27,10 +27,13 @@ class HomeTableViewCell: UITableViewCell {
         imageSlideShow.contentScaleMode = .scaleAspectFit
         dbManager?.delegate = self
         dbManager?.getProfileDetails(userID: post!.userID)
+        
+        print("width: ",self.imageSlideShow.frame.width)
+        
+        
     }
     
     override func layoutSubviews() {
-        
         likeCount.text = "\(post!.likeCount)"
         commentCount.text = "\(post!.commentCount)"
         descriptionLabel.text = post!.description
@@ -47,18 +50,27 @@ class HomeTableViewCell: UITableViewCell {
     
     
     func setPostImage(){
-        let url = URL(string: post!.imageURL!)
-        let data = (try? Data(contentsOf: url!))!
-        imageSlideShow.setImageInputs([
-            ImageSource(image: (UIImage(data:data))!)
-        ])
+        DispatchQueue.global(qos: .utility).async {
+            let url = URL(string: self.post!.imageURL!)
+            let data = (try? Data(contentsOf: url!))!
+            DispatchQueue.main.async {
+                self.imageSlideShow.setImageInputs([
+                    ImageSource(image: (UIImage(data:data))!)
+                ])
+            }
+        }
     }
     
     func setProfileImage(){
-        let url = URL(string: post!.user!.imageURL)
-        let data = (try? Data(contentsOf: url!))!
-        let profileImage = UIImage(data: data)
-        self.profileImage.image = profileImage
+        DispatchQueue.global(qos: .utility).async {
+            let url = URL(string: self.post!.user!.imageURL)
+            let data = (try? Data(contentsOf: url!))!
+            let profileImage = UIImage(data: data)
+            DispatchQueue.main.async {
+                self.profileImage.image = profileImage
+            }
+            
+        }
     }
 }
 

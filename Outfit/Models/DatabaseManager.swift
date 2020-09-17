@@ -86,28 +86,35 @@ class DatabaseManager {
     }
     
     func getProfileDetails(userID: String) {
-        db.collection("users").whereField("id",isEqualTo: userID).getDocuments { (querySnapshot, err) in
-            if let err = err {
-                print("error getting documents \(err)")
-            } else {
-                let data = querySnapshot?.documents[0].data()
-                let id = data!["id"] as! String
-                let imageURL = data!["imageURL"] as! String
-                let username = data!["username"] as! String
-                let user = User(userID: id, imageURL: imageURL, username: username)
-                self.delegate?.profileWasFetched(user: user)
+        DispatchQueue.global(qos: .utility).async {
+            self.db.collection("users").whereField("id",isEqualTo: userID).getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("error getting documents \(err)")
+                } else {
+                    let data = querySnapshot?.documents[0].data()
+                    let id = data!["id"] as! String
+                    let imageURL = data!["imageURL"] as! String
+                    let username = data!["username"] as! String
+                    let user = User(userID: id, imageURL: imageURL, username: username)
+                    DispatchQueue.main.async {
+                        self.delegate?.profileWasFetched(user: user)
+                    }
+                }
             }
         }
+        
     }
     
     func getAllPosts(){
-        db.collection("posts").getDocuments { (snapshot, err) in
-            if let err = err {
-                print("error getting all posts")
-            } else {
-                let posts = self.transformDocumentsInPosts(docs: snapshot?.documents)
-                self.currentPosts = posts
-                self.fillCurrentPostsUserDetails()
+        DispatchQueue.global(qos: .utility).async {
+            self.db.collection("posts").getDocuments { (snapshot, err) in
+                if let err = err {
+                    print("error getting all posts")
+                } else {
+                    let posts = self.transformDocumentsInPosts(docs: snapshot?.documents)
+                    self.currentPosts = posts
+                    self.fillCurrentPostsUserDetails()
+                }
             }
         }
     }
@@ -128,13 +135,13 @@ class DatabaseManager {
                     self.completedPosts.append(self.currentPosts[i])
                     
                     if (self.currentPosts.count == self.completedPosts.count){
-                        self.delegate?.allPostsWereRetreived(posts: self.completedPosts)
-                        self.currentPosts = []
-                        self.completedPosts = []
+                        DispatchQueue.main.async {
+                            self.delegate?.allPostsWereRetreived(posts: self.completedPosts)
+                            self.currentPosts = []
+                            self.completedPosts = []
+                        }
+                        
                     }
-                    
-                    
-                    
                     
                 }
             }
@@ -199,7 +206,7 @@ class DatabaseManager {
     func uploadMedia(image: UIImage, completion: @escaping (_ url: String?) -> Void) {
         
         let storageRef = Storage.storage().reference().child("\(self.randomStringWithLength(len: 15)).jpg")
-        if let uploadData = image.jpegData(compressionQuality: 0.5) {
+        if let uploadData = image.jpegData(compressionQuality: 0) {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     print("error")
@@ -235,6 +242,32 @@ class DatabaseManager {
         
 
         return randomString
+    }
+    
+     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage!
     }
     
 }
