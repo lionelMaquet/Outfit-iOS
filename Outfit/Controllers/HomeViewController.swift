@@ -24,7 +24,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
-        mainTableView.rowHeight = 600
+        //mainTableView.rowHeight = 600
+        self.mainTableView.rowHeight = UITableView.automaticDimension
+        self.mainTableView.estimatedRowHeight = 400
         self.dbManager!.getAllPosts()
         dbManager?.delegate = self
         
@@ -35,6 +37,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

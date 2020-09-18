@@ -62,7 +62,10 @@ class HomeTableViewCell: UITableViewCell {
                 ])
                 
                 let constraint = NSLayoutConstraint(item: self.imageSlideShow, attribute: .height, relatedBy: .equal, toItem: self.imageSlideShow, attribute: .width, multiplier: displayedImage!.size.height / displayedImage!.size.width, constant: 0)
+                
                 self.imageSlideShow.addConstraint(constraint)
+                self.autoresizesSubviews = false
+                
             }
         }
     }
