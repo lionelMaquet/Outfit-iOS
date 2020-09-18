@@ -9,6 +9,10 @@
 import UIKit
 import ImageSlideshow
 
+protocol HomeTableViewCellDelegate {
+    func finishedLoadingPhoto()
+}
+
 class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var likeCount: UILabel!
@@ -21,6 +25,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeButton: UIButton!
     var dbManager: DatabaseManager?
     var post: Post?
+    
+    var delegate : HomeTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,6 +57,7 @@ class HomeTableViewCell: UITableViewCell {
     
     
     
+    
     func setPostImage(){
         DispatchQueue.global(qos: .utility).async {
             let url = URL(string: self.post!.imageURL!)
@@ -77,6 +84,7 @@ class HomeTableViewCell: UITableViewCell {
             let profileImage = UIImage(data: data)
             DispatchQueue.main.async {
                 self.profileImage.image = profileImage
+                self.delegate?.finishedLoadingPhoto()
             }
             
         }

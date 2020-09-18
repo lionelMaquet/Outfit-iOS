@@ -49,6 +49,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as? HomeTableViewCell
         cell!.post = self.posts[indexPath.row]
+        cell?.delegate = self
         cell?.dbManager = self.dbManager
         return cell!
     }
@@ -70,4 +71,12 @@ extension HomeViewController: DatabaseManagerDelegate {
         mainTableView.reloadData()
         
     }
+}
+
+extension HomeViewController: HomeTableViewCellDelegate {
+    func finishedLoadingPhoto() {
+        self.mainTableView.reloadData()
+    }
+    
+    
 }
