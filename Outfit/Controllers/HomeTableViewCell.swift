@@ -26,6 +26,9 @@ class HomeTableViewCell: UITableViewCell {
     var dbManager: DatabaseManager?
     var post: Post?
     
+    var finishedLoadingProfilePicture: Bool = false
+    var finishedLoadingMainPicture: Bool = false
+    
     var delegate : HomeTableViewCellDelegate?
     
     override func awakeFromNib() {
@@ -36,7 +39,7 @@ class HomeTableViewCell: UITableViewCell {
         dbManager?.delegate = self
         dbManager?.getProfileDetails(userID: post!.userID)
         
-        print("width: ",self.imageSlideShow.frame.width)
+        
         
         
     }
@@ -61,17 +64,23 @@ class HomeTableViewCell: UITableViewCell {
     func setPostImage(){
         DispatchQueue.global(qos: .utility).async {
             let url = URL(string: self.post!.imageURL!)
+            print(url)
             let data = (try? Data(contentsOf: url!))!
             DispatchQueue.main.async {
                 let displayedImage = UIImage(data: data)
                 self.imageSlideShow.setImageInputs([
                     ImageSource(image: displayedImage!)
                 ])
+                self.finishedLoadingProfilePicture = true
                 
                 let constraint = NSLayoutConstraint(item: self.imageSlideShow, attribute: .height, relatedBy: .equal, toItem: self.imageSlideShow, attribute: .width, multiplier: displayedImage!.size.height / displayedImage!.size.width, constant: 0)
                 
                 self.imageSlideShow.addConstraint(constraint)
                 self.autoresizesSubviews = false
+                
+                if (self.finishedLoadingMainPicture == true){
+                    self.delegate?.finishedLoadingPhoto()
+                }
                 
             }
         }
@@ -84,7 +93,11 @@ class HomeTableViewCell: UITableViewCell {
             let profileImage = UIImage(data: data)
             DispatchQueue.main.async {
                 self.profileImage.image = profileImage
-                self.delegate?.finishedLoadingPhoto()
+                self.finishedLoadingProfilePicture = true
+                if (self.finishedLoadingMainPicture == true) {
+                    self.delegate?.finishedLoadingPhoto()
+                }
+                
             }
             
         }
