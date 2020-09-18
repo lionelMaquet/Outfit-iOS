@@ -82,13 +82,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWw-Z6-R9E">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJv-Ug-t2i">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="703"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tGG-ef-VOi" userLabel="mainTableView">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="725"/>
+                                                <rect key="frame" x="20" y="0.0" width="374" height="703"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </tableView>
                                         </subviews>
@@ -170,9 +170,8 @@
                                     <constraint firstAttribute="height" constant="240" id="nYN-fC-QDs"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFs-rD-O4T">
-                                <rect key="frame" x="180" y="590" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFs-rD-O4T">
+                                <rect key="frame" x="179.5" y="590" width="55" height="30"/>
                                 <state key="normal" title="Validate"/>
                                 <connections>
                                     <action selector="validateButtonTapped:" destination="bCA-sv-j8g" eventType="touchUpInside" id="FNJ-UE-J4t"/>
@@ -181,6 +180,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="fFs-rD-O4T" firstAttribute="top" secondItem="HOH-kD-FMo" secondAttribute="bottom" constant="134" id="4Kf-n9-7BN"/>
+                            <constraint firstItem="fFs-rD-O4T" firstAttribute="centerX" secondItem="t4A-ja-QLn" secondAttribute="centerX" id="MxO-tz-Xao"/>
                             <constraint firstItem="JYM-1o-xzF" firstAttribute="centerX" secondItem="t4A-ja-QLn" secondAttribute="centerX" id="cpf-aw-lpF"/>
                             <constraint firstItem="JYM-1o-xzF" firstAttribute="top" secondItem="hbi-5I-3RD" secondAttribute="top" constant="80" id="f0e-TD-eZ4"/>
                             <constraint firstItem="HOH-kD-FMo" firstAttribute="top" secondItem="JYM-1o-xzF" secondAttribute="bottom" constant="50" id="gcT-s1-Nlw"/>

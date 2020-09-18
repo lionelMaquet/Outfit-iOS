@@ -24,6 +24,8 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        
         imageSlideShow.contentScaleMode = .scaleAspectFit
         dbManager?.delegate = self
         dbManager?.getProfileDetails(userID: post!.userID)
@@ -54,9 +56,13 @@ class HomeTableViewCell: UITableViewCell {
             let url = URL(string: self.post!.imageURL!)
             let data = (try? Data(contentsOf: url!))!
             DispatchQueue.main.async {
+                let displayedImage = UIImage(data: data)
                 self.imageSlideShow.setImageInputs([
-                    ImageSource(image: (UIImage(data:data))!)
+                    ImageSource(image: displayedImage!)
                 ])
+                
+                let constraint = NSLayoutConstraint(item: self.imageSlideShow, attribute: .height, relatedBy: .equal, toItem: self.imageSlideShow, attribute: .width, multiplier: displayedImage!.size.height / displayedImage!.size.width, constant: 0)
+                self.imageSlideShow.addConstraint(constraint)
             }
         }
     }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -51,12 +53,9 @@
                                     <constraint firstItem="JNG-b4-4BE" firstAttribute="leading" secondItem="jFs-xE-eEj" secondAttribute="trailing" constant="10" id="zyw-V9-hR2"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" customClass="ImageSlideshow" customModule="ImageSlideshow">
                                 <rect key="frame" x="0.0" y="80" width="200" height="400"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="nVd-di-OaD"/>
-                                </constraints>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-po-3DO">
                                 <rect key="frame" x="0.0" y="480" width="200" height="57.5"/>
@@ -90,13 +89,13 @@ into your career, it’s always a win..."</string>
                                         <rect key="frame" x="80" y="0.0" width="120" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpo-C3-JBn">
-                                                <rect key="frame" x="0.0" y="0.0" width="24.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="25" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kd8-yb-SZe">
-                                                <rect key="frame" x="24.5" y="0.0" width="95.5" height="20.5"/>
+                                                <rect key="frame" x="25" y="0.0" width="95" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -116,8 +115,7 @@ into your career, it’s always a win..."</string>
                             <constraint firstItem="1rh-Dy-ve9" firstAttribute="top" secondItem="JfH-po-3DO" secondAttribute="bottom" constant="20" id="CK8-6w-Tg9"/>
                             <constraint firstItem="FD7-VT-PGZ" firstAttribute="top" secondItem="Ce5-Wh-Kz0" secondAttribute="bottom" constant="20" id="DGe-Ty-knR"/>
                             <constraint firstItem="JfH-po-3DO" firstAttribute="top" secondItem="FD7-VT-PGZ" secondAttribute="bottom" id="IED-Bw-d3c"/>
-                            <constraint firstAttribute="trailing" secondItem="FD7-VT-PGZ" secondAttribute="trailing" id="Yhl-SH-Cpy"/>
-                            <constraint firstItem="FD7-VT-PGZ" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="qTu-QA-xUE"/>
+                            <constraint firstItem="FD7-VT-PGZ" firstAttribute="width" secondItem="lhh-23-zw1" secondAttribute="width" id="l4h-YL-tLL"/>
                             <constraint firstItem="JfH-po-3DO" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="stM-59-czW"/>
                             <constraint firstItem="Ce5-Wh-Kz0" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="uOz-wJ-Jrm"/>
                         </constraints>
@@ -147,5 +145,8 @@ into your career, it’s always a win..."</string>
     <resources>
         <image name="example-profile-image" width="1353" height="1354"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
