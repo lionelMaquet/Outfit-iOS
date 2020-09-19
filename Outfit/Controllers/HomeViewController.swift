@@ -65,7 +65,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.profileImage.image = currentPost.profileImage
         cell?.postImageView.image = currentPost.postImage
         cell?.profileName.text = currentPost.user?.username
-        cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell?.postImageView!, attribute: .height, relatedBy: .equal, toItem: cell!.postImageView, attribute: .width, multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width), constant: 0))
+        
+        
+        cell?.addConstraint(NSLayoutConstraint(item: cell?.postImageView,
+                                               attribute: .top,
+                                               relatedBy: .equal,
+                                               toItem: cell?.profileAndSocialStack ,
+                                               attribute: .bottom,
+                                               multiplier: 1,
+                                               constant: DK.spaceBetweenPostAndProfile))
+        
+        cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell?.postImageView!,
+                                                             attribute: .height,
+                                                             relatedBy: .equal,
+                                                             toItem: cell!.postImageView,
+                                                             attribute: .width,
+                                                             multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width),
+                                                             constant: 0))
+        
+        
         
         return cell!
     }

@@ -99,9 +99,12 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="KrO-83-WuG"/>
+                                </constraints>
                             </stackView>
                             <view contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" userLabel="postImageView" customClass="UIImageView">
-                                <rect key="frame" x="0.0" y="80" width="539" height="400"/>
+                                <rect key="frame" x="0.0" y="160" width="539" height="305"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-po-3DO">
@@ -114,8 +117,7 @@ into your career, it’s always a win..."</string>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="JfH-po-3DO" firstAttribute="top" secondItem="FD7-VT-PGZ" secondAttribute="bottom" id="IED-Bw-d3c"/>
-                            <constraint firstItem="FD7-VT-PGZ" firstAttribute="top" secondItem="5VK-Pg-yq3" secondAttribute="bottom" constant="20" id="Wfe-xL-n3r"/>
+                            <constraint firstItem="JfH-po-3DO" firstAttribute="top" secondItem="FD7-VT-PGZ" secondAttribute="bottom" constant="20" id="D4c-QU-LIi"/>
                             <constraint firstAttribute="trailing" secondItem="FD7-VT-PGZ" secondAttribute="trailing" id="ZRG-CV-Hat"/>
                             <constraint firstItem="FD7-VT-PGZ" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="eAD-p3-zXk"/>
                             <constraint firstItem="FD7-VT-PGZ" firstAttribute="centerX" secondItem="lhh-23-zw1" secondAttribute="centerX" id="kku-TU-5Qs"/>
@@ -142,6 +144,7 @@ into your career, it’s always a win..."</string>
                 <outlet property="likeCount" destination="g7b-5J-shR" id="7lx-U2-N8n"/>
                 <outlet property="postImageView" destination="FD7-VT-PGZ" id="ezM-wK-PyT"/>
                 <outlet property="postStyle" destination="TL1-mv-1bN" id="png-vC-h4O"/>
+                <outlet property="profileAndSocialStack" destination="5VK-Pg-yq3" id="3Nw-dF-3eP"/>
                 <outlet property="profileImage" destination="jFs-xE-eEj" id="B4Z-RG-inv"/>
                 <outlet property="profileName" destination="B4y-RY-dUn" id="Z9E-mz-lc4"/>
             </connections>
