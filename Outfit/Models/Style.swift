@@ -87,7 +87,7 @@ struct Style {
         case "Classy":
             styleFromString = "5"
         default:
-            ""
+            styleFromString = "0"
         }
         
         switch sexe {
@@ -100,7 +100,7 @@ struct Style {
         case "Girls":
             sexeFromString = "4"
         default:
-            ""
+            sexeFromString = "0"
         }
         
         switch season {
@@ -109,7 +109,7 @@ struct Style {
         case "Winter/Autumn":
             seasonFromString = "2"
         default:
-            ""
+            seasonFromString = "0"
         }
         
         return Style(sexe: sexeFromString, season: seasonFromString, style: styleFromString)

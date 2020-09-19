@@ -15,13 +15,11 @@ var sharedDatabaseManager: DatabaseManager?
 protocol DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded : Bool)
     func allPostsWereRetreived(posts: [Post])
-    //func profileWasFetched(user: User)
 }
 
 extension DatabaseManagerDelegate {
     func triedToRetreiveUsername(succeeded : Bool){}
     func allPostsWereRetreived(posts: [Post]){}
-    func profileWasFetched(user: User){}
 }
 
 class DatabaseManager {
@@ -35,10 +33,12 @@ class DatabaseManager {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var delegate : DatabaseManagerDelegate?
+    
     var currentPosts = [Post]()
     var postsWithUserDetailsFilled : Int = 0
     var postsWithProfileImagesFilled : Int = 0
     var completedPosts : Int = 0
+    
     var currentUserMail : String? {
         if let mail = Auth.auth().currentUser?.email {
             return mail
@@ -56,8 +56,7 @@ class DatabaseManager {
                 
                 "id": newUserMail,
                 "username":username,
-                
-                
+
             ]) { (error) in
                 if let e = error {
                     print("There was an issue saving data to firestore, \(e)")
@@ -68,30 +67,33 @@ class DatabaseManager {
                 }
             }
         }
-        
     }
     
+    
+    //MARK: - FETCHING POSTS
+    
+    
+    // Function used in login to create or not a new user.
     func userHasAUsername() {
         if let mail = currentUserMail {
             db.collection("users").whereField("id",isEqualTo: mail).getDocuments { (querySnapshot, err) in
                 if let err = err {
                     print("error getting documents \(err)")
                 } else {
-                    var numberOfDocs = querySnapshot?.documents.count
+                    let numberOfDocs = querySnapshot?.documents.count
                     let isUsernameCreated = numberOfDocs != 0
                     self.delegate?.triedToRetreiveUsername(succeeded : isUsernameCreated)
                 }
             }
-            
         }
-        
     }
+    
     
     func getAllPosts(){
         DispatchQueue.global(qos: .utility).async {
             self.db.collection("posts").getDocuments { (snapshot, err) in
                 if let err = err {
-                    print("error getting all posts")
+                    print("error getting all posts : ", err)
                 } else {
                     let posts = self.transformDocumentsInPosts(docs: snapshot?.documents)
                     self.currentPosts = posts
@@ -132,8 +134,8 @@ class DatabaseManager {
                 let data = (try? Data(contentsOf: url!))!
                 let profileImage = UIImage(data: data)
                 DispatchQueue.main.async {
-                    var oldPost = self.currentPosts[i]
-                    var newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: profileImage, postImage: nil)
+                    let oldPost = self.currentPosts[i]
+                    let newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: profileImage, postImage: nil)
                     self.currentPosts[i] = newPost
                     self.postsWithProfileImagesFilled += 1
                     if(self.postsWithProfileImagesFilled == self.currentPosts.count){
@@ -151,8 +153,8 @@ class DatabaseManager {
                 let data = (try? Data(contentsOf: url!))!
                 let postImage = UIImage(data: data)
                 DispatchQueue.main.async {
-                    var oldPost = self.currentPosts[i]
-                    var newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: oldPost.profileImage, postImage: postImage)
+                    let oldPost = self.currentPosts[i]
+                    let newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: oldPost.profileImage, postImage: postImage)
                     self.currentPosts[i] = newPost
                     self.completedPosts += 1
                     if(self.completedPosts == self.currentPosts.count){
@@ -188,6 +190,10 @@ class DatabaseManager {
         return posts
     }
     
+    
+    //MARK: - UPLOADING POSTS
+    
+    // uploads the image, then tiggers upload post filled with download url
     func uploadImageAndPost(post: Post, image: UIImage){
         uploadMedia(image: image) { (uploadedImageURL) in
             let completedPost = Post(userID: post.userID, user: post.user, description: post.description, commentCount: post.commentCount, likeCount: post.likeCount, imageURL: uploadedImageURL, style: post.style, sexe: post.sexe, season: post.season)
@@ -231,35 +237,22 @@ class DatabaseManager {
                     print("error")
                     completion(nil)
                 } else {
-                    
                     storageRef.downloadURL(completion: { (url, error) in
-                        
-                        print(url?.absoluteString)
                         completion(url?.absoluteString)
                     })
-                    
-                    //  completion((metadata?.downloadURL()?.absoluteString)!))
-                    // your uploaded photo url.
-                    
-                    
                 }
             }
         }
     }
     
     func randomStringWithLength (len : Int) -> NSString {
-        
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        
-        var randomString : NSMutableString = NSMutableString(capacity: len)
-        
-        for i in 0...len {
-            var length = UInt32 (letters.length)
-            var rand = arc4random_uniform(length)
+        let randomString : NSMutableString = NSMutableString(capacity: len)
+        for _ in 0...len {
+            let length = UInt32 (letters.length)
+            let rand = arc4random_uniform(length)
             randomString.appendFormat("%C", letters.character(at: Int(rand)))
         }
-        
-
         return randomString
     }
     

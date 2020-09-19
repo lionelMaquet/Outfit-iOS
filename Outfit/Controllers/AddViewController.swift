@@ -28,7 +28,7 @@ class AddViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func validateButtonTapped(_ sender: UIButton) {
-        if let image = imageView.image {
+        if imageView.image != nil  {
             performSegue(withIdentifier: "goToDescriptionVC", sender: self)
         }
     }

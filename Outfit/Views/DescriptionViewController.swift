@@ -29,8 +29,6 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate {
         let pickedStyle = styleChoice.titleForSegment(at: styleChoice.selectedSegmentIndex)
         let pickedSexe = sexeChoice.titleForSegment(at: sexeChoice.selectedSegmentIndex)
         let pickedSeason = seasonChoice.titleForSegment(at: seasonChoice.selectedSegmentIndex)
-        let style = Style.fromEnglishStrings(style: pickedStyle! , sexe: pickedSexe!, season: pickedSeason!)
-        
         
         let newStyle = Style.fromEnglishStrings(style: pickedStyle!, sexe: pickedSexe!, season: pickedSeason!)
         
@@ -40,9 +38,6 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate {
         
         sharedDatabaseManager?.uploadImageAndPost(post: newPost, image: imageToUpload!)
         
-        
-        
-        /// Todo : Upload file to storage then upload these infos to a new post
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
