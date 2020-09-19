@@ -36,9 +36,9 @@ class DatabaseManager {
     let storage = Storage.storage()
     var delegate : DatabaseManagerDelegate?
     var currentPosts = [Post]()
-    var postsWithUserDetailsFilled = [Post]()
-    var postsWithProfileImagesFilled = [Post]()
-    var completedPosts = [Post]()
+    var postsWithUserDetailsFilled : Int = 0
+    var postsWithProfileImagesFilled : Int = 0
+    var completedPosts : Int = 0
     var currentUserMail : String? {
         if let mail = Auth.auth().currentUser?.email {
             return mail
@@ -87,25 +87,25 @@ class DatabaseManager {
         
     }
     
-    func getProfileDetails(userID: String) {
-        DispatchQueue.global(qos: .utility).async {
-            self.db.collection("users").whereField("id",isEqualTo: userID).getDocuments { (querySnapshot, err) in
-                if let err = err {
-                    print("error getting documents \(err)")
-                } else {
-                    let data = querySnapshot?.documents[0].data()
-                    let id = data!["id"] as! String
-                    let imageURL = data!["imageURL"] as! String
-                    let username = data!["username"] as! String
-                    let user = User(userID: id, imageURL: imageURL, username: username)
-                    DispatchQueue.main.async {
-                        self.delegate?.profileWasFetched(user: user)
-                    }
-                }
-            }
-        }
-        
-    }
+//    func getProfileDetails(userID: String) {
+//        DispatchQueue.global(qos: .utility).async {
+//            self.db.collection("users").whereField("id",isEqualTo: userID).getDocuments { (querySnapshot, err) in
+//                if let err = err {
+//                    print("error getting documents \(err)")
+//                } else {
+//                    let data = querySnapshot?.documents[0].data()
+//                    let id = data!["id"] as! String
+//                    let imageURL = data!["imageURL"] as! String
+//                    let username = data!["username"] as! String
+//                    let user = User(userID: id, imageURL: imageURL, username: username)
+//                    DispatchQueue.main.async {
+//                        self.delegate?.profileWasFetched(user: user)
+//                    }
+//                }
+//            }
+//        }
+//        
+//    }
     
     func getAllPosts(){
         DispatchQueue.global(qos: .utility).async {
@@ -134,9 +134,10 @@ class DatabaseManager {
                     let imageURL = data!["imageURL"] as! String
                     let username = data!["username"] as! String
                     self.currentPosts[i].user = User(userID: id, imageURL: imageURL, username: username)
-                    self.postsWithUserDetailsFilled.append(self.currentPosts[i])
                     
-                    if(self.postsWithUserDetailsFilled.count == self.currentPosts.count){
+                    self.postsWithUserDetailsFilled += 1
+                    
+                    if(self.postsWithUserDetailsFilled == self.currentPosts.count){
                         self.fillPostsWithProfileImages()
                     }
                 }
@@ -145,16 +146,17 @@ class DatabaseManager {
     }
     
     func fillPostsWithProfileImages(){
-        for i in 0...postsWithUserDetailsFilled.count - 1 {
-            let url = URL(string: self.postsWithUserDetailsFilled[i].user!.imageURL)
+        for i in 0...currentPosts.count - 1 {
+            let url = URL(string: self.currentPosts[i].user!.imageURL)
             DispatchQueue.global(qos: .utility).async {
                 let data = (try? Data(contentsOf: url!))!
                 let profileImage = UIImage(data: data)
                 DispatchQueue.main.async {
-                    var oldPost = self.postsWithUserDetailsFilled[i]
+                    var oldPost = self.currentPosts[i]
                     var newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: profileImage, postImage: nil)
-                    self.postsWithProfileImagesFilled.append(newPost)
-                    if(self.postsWithProfileImagesFilled.count == self.postsWithUserDetailsFilled.count){
+                    self.currentPosts[i] = newPost
+                    self.postsWithProfileImagesFilled += 1
+                    if(self.postsWithProfileImagesFilled == self.currentPosts.count){
                         self.fillPostsWithPostImages()
                     }
                 }
@@ -163,16 +165,17 @@ class DatabaseManager {
     }
     
     func fillPostsWithPostImages(){
-        for i in 0...postsWithProfileImagesFilled.count - 1 {
-            let url = URL(string: self.postsWithUserDetailsFilled[i].imageURL!)
+        for i in 0...currentPosts.count - 1 {
+            let url = URL(string: self.currentPosts[i].imageURL!)
             DispatchQueue.global(qos: .utility).async {
                 let data = (try? Data(contentsOf: url!))!
                 let postImage = UIImage(data: data)
                 DispatchQueue.main.async {
-                    var oldPost = self.postsWithProfileImagesFilled[i]
+                    var oldPost = self.currentPosts[i]
                     var newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: oldPost.profileImage, postImage: postImage)
-                    self.completedPosts.append(newPost)
-                    if(self.completedPosts.count == self.postsWithProfileImagesFilled.count){
+                    self.currentPosts[i] = newPost
+                    self.completedPosts += 1
+                    if(self.completedPosts == self.currentPosts.count){
                         self.allPostsWereFilled()
                     }
                 }
@@ -181,7 +184,7 @@ class DatabaseManager {
     }
     
     func allPostsWereFilled(){
-        self.delegate?.allPostsWereRetreived(posts: completedPosts)
+        self.delegate?.allPostsWereRetreived(posts: currentPosts)
     }
     
     
