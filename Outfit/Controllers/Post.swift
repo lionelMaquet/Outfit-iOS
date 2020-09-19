@@ -19,6 +19,8 @@ struct Post {
     var style: String
     var sexe: String
     var season: String
+    var profileImage: UIImage?
+    var postImage: UIImage?
     
     var styleName: String {
         return Style(sexe: self.sexe, season: self.season, style: self.style).name

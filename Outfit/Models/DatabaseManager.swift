@@ -36,6 +36,8 @@ class DatabaseManager {
     let storage = Storage.storage()
     var delegate : DatabaseManagerDelegate?
     var currentPosts = [Post]()
+    var postsWithUserDetailsFilled = [Post]()
+    var postsWithProfileImagesFilled = [Post]()
     var completedPosts = [Post]()
     var currentUserMail : String? {
         if let mail = Auth.auth().currentUser?.email {
@@ -132,20 +134,54 @@ class DatabaseManager {
                     let imageURL = data!["imageURL"] as! String
                     let username = data!["username"] as! String
                     self.currentPosts[i].user = User(userID: id, imageURL: imageURL, username: username)
-                    self.completedPosts.append(self.currentPosts[i])
+                    self.postsWithUserDetailsFilled.append(self.currentPosts[i])
                     
-                    if (self.currentPosts.count == self.completedPosts.count){
-                        DispatchQueue.main.async {
-                            self.delegate?.allPostsWereRetreived(posts: self.completedPosts)
-                            self.currentPosts = []
-                            self.completedPosts = []
-                        }
-                        
+                    if(self.postsWithUserDetailsFilled.count == self.currentPosts.count){
+                        self.fillPostsWithProfileImages()
                     }
-                    
                 }
             }
         }
+    }
+    
+    func fillPostsWithProfileImages(){
+        for i in 0...postsWithUserDetailsFilled.count - 1 {
+            let url = URL(string: self.postsWithUserDetailsFilled[i].user!.imageURL)
+            DispatchQueue.global(qos: .utility).async {
+                let data = (try? Data(contentsOf: url!))!
+                let profileImage = UIImage(data: data)
+                DispatchQueue.main.async {
+                    var oldPost = self.postsWithUserDetailsFilled[i]
+                    var newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: profileImage, postImage: nil)
+                    self.postsWithProfileImagesFilled.append(newPost)
+                    if(self.postsWithProfileImagesFilled.count == self.postsWithUserDetailsFilled.count){
+                        self.fillPostsWithPostImages()
+                    }
+                }
+            }
+        }
+    }
+    
+    func fillPostsWithPostImages(){
+        for i in 0...postsWithProfileImagesFilled.count - 1 {
+            let url = URL(string: self.postsWithUserDetailsFilled[i].imageURL!)
+            DispatchQueue.global(qos: .utility).async {
+                let data = (try? Data(contentsOf: url!))!
+                let postImage = UIImage(data: data)
+                DispatchQueue.main.async {
+                    var oldPost = self.postsWithProfileImagesFilled[i]
+                    var newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: oldPost.profileImage, postImage: postImage)
+                    self.completedPosts.append(newPost)
+                    if(self.completedPosts.count == self.postsWithProfileImagesFilled.count){
+                        self.allPostsWereFilled()
+                    }
+                }
+            }
+        }
+    }
+    
+    func allPostsWereFilled(){
+        self.delegate?.allPostsWereRetreived(posts: completedPosts)
     }
     
     
