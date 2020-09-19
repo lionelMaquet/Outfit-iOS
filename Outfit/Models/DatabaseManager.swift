@@ -87,26 +87,6 @@ class DatabaseManager {
         
     }
     
-//    func getProfileDetails(userID: String) {
-//        DispatchQueue.global(qos: .utility).async {
-//            self.db.collection("users").whereField("id",isEqualTo: userID).getDocuments { (querySnapshot, err) in
-//                if let err = err {
-//                    print("error getting documents \(err)")
-//                } else {
-//                    let data = querySnapshot?.documents[0].data()
-//                    let id = data!["id"] as! String
-//                    let imageURL = data!["imageURL"] as! String
-//                    let username = data!["username"] as! String
-//                    let user = User(userID: id, imageURL: imageURL, username: username)
-//                    DispatchQueue.main.async {
-//                        self.delegate?.profileWasFetched(user: user)
-//                    }
-//                }
-//            }
-//        }
-//        
-//    }
-    
     func getAllPosts(){
         DispatchQueue.global(qos: .utility).async {
             self.db.collection("posts").getDocuments { (snapshot, err) in
