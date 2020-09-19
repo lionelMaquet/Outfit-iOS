@@ -21,15 +21,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        ///tableview
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
-        //mainTableView.rowHeight = 600
         self.mainTableView.rowHeight = UITableView.automaticDimension
         self.mainTableView.estimatedRowHeight = 300
+        
+        ///dbManager
         self.dbManager!.getAllPosts()
         dbManager?.delegate = self
         
+        ///refresher
         mainTableView.addPullToRefresh(refresher) {
             self.dbManager?.getAllPosts()
         }
@@ -48,10 +52,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as? HomeTableViewCell
-        cell!.post = self.posts[indexPath.row]
         cell?.delegate = self
         cell?.dbManager = self.dbManager
+        cell!.post = self.posts[indexPath.row]
         
+        /// fills all infos
         let currentPost = self.posts[indexPath.row]
         cell?.commentCount.text = "\(currentPost.commentCount)"
         cell?.descriptionLabel.text = currentPost.description
@@ -60,7 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.profileImage.image = currentPost.profileImage
         cell?.postImageView.image = currentPost.postImage
         cell?.profileName.text = currentPost.user?.username
-        cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell?.postImageView, attribute: .height, relatedBy: .equal, toItem: cell!.postImageView, attribute: .width, multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width), constant: 0))
+        cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell?.postImageView!, attribute: .height, relatedBy: .equal, toItem: cell!.postImageView, attribute: .width, multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width), constant: 0))
         
         return cell!
     }
@@ -68,27 +73,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     deinit {
         mainTableView.removeAllPullToRefresh()
     }
-    
-    
 }
 
 extension HomeViewController: DatabaseManagerDelegate {
     func allPostsWereRetreived(posts: [Post]) {
         self.posts = posts
-        
         mainTableView.endRefreshing(at: .top)
-        
-        
         mainTableView.reloadData()
-        
     }
 }
 
 extension HomeViewController: HomeTableViewCellDelegate {
-    func finishedLoadingPhoto() {
-        
-        
-    }
-    
-    
 }

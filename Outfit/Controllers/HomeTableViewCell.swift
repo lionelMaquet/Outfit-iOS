@@ -10,7 +10,6 @@ import UIKit
 import ImageSlideshow
 
 protocol HomeTableViewCellDelegate {
-    func finishedLoadingPhoto()
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -30,81 +29,10 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
-        
-//        dbManager?.delegate = self
-//        //        dbManager?.getProfileDetails(userID: post!.userID)
-//
-//        likeCount.text = "\(post!.likeCount)"
-//        commentCount.text = "\(post!.commentCount)"
-//        descriptionLabel.text = post!.description
-//        profileName.text = post?.user?.username
-//        postStyle.text = post?.styleName
-//        profileImage.image = post?.profileImage
-//
-//
-        
-        
-        
     }
     
-    override func setNeedsLayout() {
-//        let constraint = NSLayoutConstraint(item: self.postImageView,
-//                                            attribute: .height,
-//                                            relatedBy: .equal,
-//                                            toItem: self.postImageView,
-//                                            attribute: .width,
-//                                            multiplier: (postImageView.image!.size.height) / (postImageView.image!.size.width), constant: 0)
-//        self.postImageView.addConstraint(constraint)
-    }
-    
-    override func layoutSubviews() {
-        
-    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-    
-    
-    
-    
-    //    func setPostImage(){
-    //        DispatchQueue.global(qos: .utility).async {
-    //            let url = URL(string: self.post!.imageURL!)
-    //            print(url)
-    //            let data = (try? Data(contentsOf: url!))!
-    //            DispatchQueue.main.async {
-    //                let displayedImage = UIImage(data: data)
-    //                self.imageSlideShow.setImageInputs([
-    //                    ImageSource(image: displayedImage!)
-    //                ])
-    //
-    //
-    //                let constraint = NSLayoutConstraint(item: self.imageSlideShow, attribute: .height, relatedBy: .equal, toItem: self.imageSlideShow, attribute: .width, multiplier: displayedImage!.size.height / displayedImage!.size.width, constant: 0)
-    //
-    //                self.imageSlideShow.addConstraint(constraint)
-    //                self.autoresizesSubviews = false
-    //
-    //            }
-    //        }
-    //    }
-    
-    //    func setProfileImage(){
-    //        DispatchQueue.global(qos: .utility).async {
-    //            let url = URL(string: self.post!.user!.imageURL)
-    //            let data = (try? Data(contentsOf: url!))!
-    //            let profileImage = UIImage(data: data)
-    //            DispatchQueue.main.async {
-    //                self.profileImage.image = profileImage
-    //            }
-    //        }
-    //    }
-}
-
-extension HomeTableViewCell: DatabaseManagerDelegate {
-    func profileWasFetched(user: User) {
-        //        print("here", user.username)
     }
 }
