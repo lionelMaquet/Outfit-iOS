@@ -83,7 +83,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                              multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width),
                                                              constant: 0))
         
-        
+        // make profile image round
+        let image = cell?.profileImage
+        image!.layer.masksToBounds = false
+        image!.layer.borderColor = UIColor.black.cgColor
+        image!.layer.cornerRadius = image!.frame.height/2
+        image!.clipsToBounds = true
         
         return cell!
     }
