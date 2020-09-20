@@ -9,7 +9,7 @@
 import UIKit
 import PullToRefresh
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     
     @IBOutlet weak var mainTableView: UITableView!
@@ -38,6 +38,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.dbManager?.getAllPosts()
         }
         mainTableView.refresher(at: .top)?.setEnable(isEnabled: false)
+        
+        let searchBar = UISearchBar()
+        searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 70)
+        searchBar.delegate = self
+        searchBar.showsCancelButton = true
+        searchBar.searchBarStyle = UISearchBar.Style.default
+        searchBar.placeholder = " Search Here....."
+        searchBar.sizeToFit()
+        
+        //mainTableView.tableHeaderView = searchBar
         
     }
     

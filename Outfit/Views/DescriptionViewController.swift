@@ -38,6 +38,8 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate {
         
         sharedDatabaseManager?.uploadImageAndPost(post: newPost, image: imageToUpload!)
         
+        self.navigationController?.popToRootViewController(animated: true)
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
