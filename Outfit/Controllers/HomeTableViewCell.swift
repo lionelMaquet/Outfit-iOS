@@ -26,6 +26,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
+    var isLiked: Bool = false
     var dbManager: DatabaseManager?
     var post: Post?
     
@@ -38,5 +39,21 @@ class HomeTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    @IBAction func likeButtonTapped(_ sender: UIButton) {
+        /// 1 : change icon
+        if (isLiked == false){
+            isLiked = true
+            likeButton.setImage(UIImage(named: "heart-filled"), for: .normal)
+        } else {
+            isLiked = false
+            likeButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+        }
+        
+        /// 2 : put my current id in the list of likes from the post
+        
+        
+        /// 3 : When the post is displayed, check if it's liked from the user !
     }
 }

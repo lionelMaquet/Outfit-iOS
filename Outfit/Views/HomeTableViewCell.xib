@@ -77,9 +77,12 @@
                                                             <constraint firstAttribute="width" constant="15" id="RDJ-bc-ufJ"/>
                                                             <constraint firstAttribute="height" constant="15" id="VeJ-Q0-n5Z"/>
                                                         </constraints>
-                                                        <state key="normal" image="heart-icon">
+                                                        <state key="normal" image="heart-empty">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="likeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DNs-Ae-B5X"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7b-5J-shR">
                                                         <rect key="frame" x="20" y="0.0" width="24" height="16"/>
@@ -163,7 +166,7 @@ into your career, it’s always a win..."</string>
     <resources>
         <image name="comment-icon" width="512" height="512"/>
         <image name="example-profile-image" width="1353" height="1354"/>
-        <image name="heart-icon" width="512" height="512"/>
+        <image name="heart-empty" width="512.0009765625" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
