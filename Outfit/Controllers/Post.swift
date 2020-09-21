@@ -21,6 +21,7 @@ struct Post {
     var season: String
     var profileImage: UIImage?
     var postImage: UIImage?
+    var postDocumentID: String?
     
     var styleName: String {
         return Style(sexe: self.sexe, season: self.season, style: self.style).name

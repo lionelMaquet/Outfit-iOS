@@ -75,6 +75,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.profileImage.image = currentPost.profileImage
         cell?.postImageView.image = currentPost.postImage
         cell?.profileName.text = currentPost.user?.username
+        cell?.postDocumentID = currentPost.postDocumentID
+        
         
         
         

@@ -139,7 +139,7 @@ class DatabaseManager {
                 let profileImage = UIImage(data: data)
                 DispatchQueue.main.async {
                     let oldPost = self.currentPosts[i]
-                    let newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: profileImage, postImage: nil)
+                    let newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: profileImage, postImage: nil, postDocumentID: oldPost.postDocumentID)
                     self.currentPosts[i] = newPost
                     self.postsWithProfileImagesFilled += 1
                     if(self.postsWithProfileImagesFilled == self.currentPosts.count){
@@ -158,7 +158,7 @@ class DatabaseManager {
                 let postImage = UIImage(data: data)
                 DispatchQueue.main.async {
                     let oldPost = self.currentPosts[i]
-                    let newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: oldPost.profileImage, postImage: postImage)
+                    let newPost = Post(userID: oldPost.userID, user: oldPost.user, description: oldPost.description, commentCount: oldPost.commentCount, likeCount: oldPost.likeCount, imageURL: oldPost.imageURL, style: oldPost.style, sexe: oldPost.sexe, season: oldPost.season, profileImage: oldPost.profileImage, postImage: postImage, postDocumentID: oldPost.postDocumentID)
                     self.currentPosts[i] = newPost
                     self.completedPosts += 1
                     if(self.completedPosts == self.currentPosts.count){
@@ -184,6 +184,7 @@ class DatabaseManager {
         }
         
         for i in 0...documents.count - 1 {
+            let documentID = documents[i].documentID
             let userID = documents[i]["userID"] as! String
             let description = documents[i]["description"] as! String
             let commentCount = documents[i]["commentCount"] as! Int
@@ -193,7 +194,7 @@ class DatabaseManager {
             let season = documents[i]["season"] as! String
             let style = documents[i]["style"] as! String
             
-            posts.append(Post(userID: userID, description: description, commentCount: commentCount, likeCount: likeCount, imageURL: imageURL, style: style, sexe: sexe, season: season ))
+            posts.append(Post(userID: userID, description: description, commentCount: commentCount, likeCount: likeCount, imageURL: imageURL, style: style, sexe: sexe, season: season, postDocumentID: documentID ))
         }
         return posts
     }

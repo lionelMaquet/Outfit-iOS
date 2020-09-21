@@ -26,6 +26,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
+    var postDocumentID: String?
     var isLiked: Bool = false
     var dbManager: DatabaseManager?
     var post: Post?
@@ -50,6 +51,8 @@ class HomeTableViewCell: UITableViewCell {
             isLiked = false
             likeButton.setImage(UIImage(named: "heart-empty"), for: .normal)
         }
+        
+        print(self.postDocumentID)
         
         /// 2 : put my current id in the list of likes from the post
         
