@@ -14,6 +14,7 @@ protocol HomeTableViewCellDelegate {
 
 class HomeTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var profileBorderView: UIView!
     @IBOutlet weak var mainVerticalStack: UIStackView!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var profileAndSocialStack: UIStackView!
