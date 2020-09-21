@@ -78,15 +78,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         
+        /// profile and social stack
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell?.profileAndSocialStack, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: -DK.landrSpaceProfileStack))
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell?.profileAndSocialStack, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: DK.landrSpaceProfileStack))
         
-        cell?.addConstraint(NSLayoutConstraint(item: cell?.postImageView,
-                                               attribute: .width,
-                                               relatedBy: .equal,
-                                               toItem: cell?.profileAndSocialStack,
-                                               attribute: .width,
-                                               multiplier: 1,
-                                               constant: 0))
-        
+        /// post image view
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell?.postImageView, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: 0))
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell?.postImageView, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: 0))
         cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell?.postImageView!,
                                                              attribute: .height,
                                                              relatedBy: .equal,
@@ -103,24 +101,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                multiplier: 1,
                                                constant: DK.spaceBetweenPostAndProfile))
         
-        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell?.descriptionLabel,
-                                               attribute: .top,
-                                               relatedBy: .equal,
-                                               toItem: cell?.postImageView,
-                                               attribute: .bottom,
-                                               multiplier: 1,
-                                               constant: 5))
+        
+        
+        /// description label
+        cell?.descriptionLabel.sizeToFit()
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell?.descriptionLabel, attribute: .top, relatedBy: .equal, toItem: cell?.postImageView, attribute: .bottom, multiplier: 1, constant: DK.spaceBetweenPostImageAndDesc))
         
         
         
         // make profile image round
         let image = cell?.profileImage
         image!.layer.masksToBounds = false
-        image!.layer.borderColor = UIColor.black.cgColor
+        image!.layer.borderColor = UIColor.white.cgColor
+        image!.layer.borderWidth = CGFloat(2)
         image!.layer.cornerRadius = image!.frame.height/2
         image!.clipsToBounds = true
         
-        cell?.descriptionLabel.sizeToFit()
+        /// gradient
+        //image?.addCircleGradiendBorder(7)
+        
+        
         
         return cell!
     }
@@ -143,4 +143,35 @@ extension HomeViewController: DatabaseManagerDelegate {
 }
 
 extension HomeViewController: HomeTableViewCellDelegate {
+}
+
+extension UIImageView {
+    
+    func addCircleGradiendBorder(_ width: CGFloat) {
+        let gradient = CAGradientLayer()
+        gradient.frame =  CGRect(origin: CGPoint.zero, size: bounds.size)
+        let colors: [CGColor] = [UIColor.red.cgColor, UIColor.yellow.cgColor]
+        gradient.colors = colors
+        gradient.startPoint = CGPoint(x: 1, y: 0.5)
+        gradient.endPoint = CGPoint(x: 0, y: 0.5)
+        
+        let cornerRadius = frame.size.width / 2
+        layer.cornerRadius = cornerRadius
+        clipsToBounds = true
+        
+        let shape = CAShapeLayer()
+       
+        let path = UIBezierPath(ovalIn: bounds)
+        
+        shape.lineWidth = width
+        shape.path = path.cgPath
+        shape.strokeColor = UIColor.black.cgColor
+        shape.fillColor = UIColor.clear.cgColor // clear
+        gradient.mask = shape
+        gradient.borderColor = UIColor.white.cgColor
+        
+        
+        layer.insertSublayer(gradient, below: layer)
+    }
+    
 }
