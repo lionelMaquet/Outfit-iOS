@@ -15,7 +15,7 @@
                 <navigationController id="XLj-7C-dgV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="EOw-Sg-Tyi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aZ7-wj-6rh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -31,7 +31,7 @@
             <objects>
                 <viewController id="ZmC-wx-g2O" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Vv-rY-I2e">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="sC8-6u-T3t"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -48,7 +48,7 @@
                 <navigationController id="etO-Ts-lL9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Styles" image="rosette" catalog="system" id="wJe-6c-tra"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0RA-hI-jgk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -64,7 +64,7 @@
             <objects>
                 <viewController id="Bjv-ka-JFn" customClass="StylesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bRP-b2-lMu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="iyU-YK-3Ld"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -80,25 +80,25 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Outfit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWw-Z6-R9E">
-                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJv-Ug-t2i">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="703"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tGG-ef-VOi" userLabel="mainTableView">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="703"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tGG-ef-VOi" userLabel="mainTableView">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="tGG-ef-VOi" firstAttribute="top" secondItem="RJv-Ug-t2i" secondAttribute="top" id="Lo4-vM-bUr"/>
-                                            <constraint firstItem="tGG-ef-VOi" firstAttribute="leading" secondItem="RJv-Ug-t2i" secondAttribute="leading" constant="20" id="ZcT-d4-ptg"/>
-                                            <constraint firstAttribute="trailing" secondItem="tGG-ef-VOi" secondAttribute="trailing" constant="20" id="Zhh-on-BfF"/>
+                                            <constraint firstItem="tGG-ef-VOi" firstAttribute="leading" secondItem="RJv-Ug-t2i" secondAttribute="leading" id="ZcT-d4-ptg"/>
+                                            <constraint firstAttribute="trailing" secondItem="tGG-ef-VOi" secondAttribute="trailing" id="Zhh-on-BfF"/>
                                             <constraint firstAttribute="bottom" secondItem="tGG-ef-VOi" secondAttribute="bottom" id="zWk-0B-hgo"/>
                                         </constraints>
                                     </view>
@@ -145,25 +145,25 @@
             <objects>
                 <viewController id="bCA-sv-j8g" customClass="AddViewController" customModule="Outfit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t4A-ja-QLn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYM-1o-xzF">
-                                <rect key="frame" x="160.5" y="136" width="93" height="30"/>
+                                <rect key="frame" x="160.5" y="168" width="93" height="30"/>
                                 <state key="normal" title="Pick a picture"/>
                                 <connections>
                                     <action selector="pickAPictureButtonTapped:" destination="bCA-sv-j8g" eventType="touchUpInside" id="rYo-i9-QSZ"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HOH-kD-FMo">
-                                <rect key="frame" x="87" y="216" width="240" height="240"/>
+                                <rect key="frame" x="87" y="248" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="ND3-Kc-jjP"/>
                                     <constraint firstAttribute="height" constant="240" id="nYN-fC-QDs"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFs-rD-O4T">
-                                <rect key="frame" x="179.5" y="679" width="55" height="30"/>
+                                <rect key="frame" x="179.5" y="733" width="55" height="30"/>
                                 <state key="normal" title="Validate"/>
                                 <connections>
                                     <action selector="validateButtonTapped:" destination="bCA-sv-j8g" eventType="touchUpInside" id="FNJ-UE-J4t"/>
@@ -196,11 +196,11 @@
             <objects>
                 <viewController id="HUc-nw-NaE" customClass="DescriptionViewController" customModule="Outfit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Y9-1a-iDj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fz8-G9-p3F">
-                                <rect key="frame" x="20" y="104" width="374" height="200"/>
+                                <rect key="frame" x="20" y="136" width="374" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="TOy-Ua-D52"/>
                                 </constraints>
@@ -208,21 +208,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aBZ-OQ-1Ok">
-                                <rect key="frame" x="141.5" y="324" width="131" height="32"/>
+                                <rect key="frame" x="141.5" y="356" width="131" height="32"/>
                                 <segments>
                                     <segment title="Men"/>
                                     <segment title="Women"/>
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7ht-ex-Wq7">
-                                <rect key="frame" x="91.5" y="375" width="231" height="32"/>
+                                <rect key="frame" x="91.5" y="407" width="231" height="32"/>
                                 <segments>
                                     <segment title="Winter/Autumn"/>
                                     <segment title="Summer/Spring"/>
                                 </segments>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6gx-Tg-SXS">
-                                <rect key="frame" x="10" y="426" width="394" height="32"/>
+                                <rect key="frame" x="10" y="458" width="394" height="32"/>
                                 <segments>
                                     <segment title="Classic"/>
                                     <segment title="Casual"/>
@@ -232,7 +232,7 @@
                                 </segments>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1K-D5-ztu">
-                                <rect key="frame" x="179.5" y="557" width="55" height="30"/>
+                                <rect key="frame" x="179.5" y="589" width="55" height="30"/>
                                 <state key="normal" title="Validate"/>
                                 <connections>
                                     <action selector="validateTapped:" destination="HUc-nw-NaE" eventType="touchUpInside" id="Ekh-cD-9p6"/>
@@ -275,7 +275,7 @@
                 <navigationController id="Ckx-sI-6pb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" id="cDA-Dr-Q2M"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hbI-W7-aOt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -291,7 +291,7 @@
             <objects>
                 <viewController id="YXm-iR-jae" customClass="FavoritesViewController" customModule="Outfit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mWv-mS-BpY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="gRw-ik-xhP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -356,16 +356,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gOL-5R-JG2">
-                                <rect key="frame" x="0.0" y="248" width="414" height="400"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gOL-5R-JG2">
+                                <rect key="frame" x="142" y="438" width="130" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="vp3-md-YjH"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nu2-B4-MvK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gOL-5R-JG2" firstAttribute="top" secondItem="Nu2-B4-MvK" secondAttribute="top" constant="204" id="4Ma-xB-T4f"/>
                             <constraint firstItem="gOL-5R-JG2" firstAttribute="centerY" secondItem="NAn-OU-rhB" secondAttribute="centerY" id="A4G-5w-crW"/>
-                            <constraint firstItem="gOL-5R-JG2" firstAttribute="leading" secondItem="Nu2-B4-MvK" secondAttribute="leading" id="kn7-1u-eb8"/>
                             <constraint firstItem="gOL-5R-JG2" firstAttribute="centerX" secondItem="NAn-OU-rhB" secondAttribute="centerX" id="sdS-eM-2cE"/>
                         </constraints>
                     </view>
@@ -409,7 +410,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="Zlz-mY-PFG"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="45N-rK-VsX">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="fKc-yg-ZMA">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="fKc-yg-ZMA">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="O33-9f-zfK">
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -417,7 +418,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i0e-yg-Xsj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -431,7 +432,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LKD-MK-GLm"/>
+        <segue reference="L22-f9-k9B"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>

@@ -106,6 +106,10 @@ class DatabaseManager {
     
     
     func fillCurrentPostsUserDetails(){
+        guard currentPosts.count > 0 else {
+            return
+        }
+        
         for i in 0...currentPosts.count - 1 {
             db.collection("users").whereField("id",isEqualTo: currentPosts[i].userID).getDocuments { (querySnapshot, err) in
                 if let err = err {
@@ -175,6 +179,10 @@ class DatabaseManager {
         var posts : [Post] = []
         let documents = docs as! [QueryDocumentSnapshot]
         
+        guard documents.count > 0 else {
+            return []
+        }
+        
         for i in 0...documents.count - 1 {
             let userID = documents[i]["userID"] as! String
             let description = documents[i]["description"] as! String
@@ -231,7 +239,7 @@ class DatabaseManager {
     func uploadMedia(image: UIImage, completion: @escaping (_ url: String?) -> Void) {
         
         let storageRef = Storage.storage().reference().child("\(self.randomStringWithLength(len: 15)).jpg")
-        if let uploadData = image.jpegData(compressionQuality: 0) {
+        if let uploadData = image.jpegData(compressionQuality: 0.15) {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     print("error")

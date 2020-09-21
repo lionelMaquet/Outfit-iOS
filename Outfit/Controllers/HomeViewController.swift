@@ -85,6 +85,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                multiplier: 1,
                                                constant: DK.spaceBetweenPostAndProfile))
         
+        cell?.addConstraint(NSLayoutConstraint(item: cell?.postImageView, attribute: .width, relatedBy: .equal, toItem: cell?.profileAndSocialStack, attribute: .width, multiplier: 1, constant: 0))
+        
         cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell?.postImageView!,
                                                              attribute: .height,
                                                              relatedBy: .equal,
@@ -93,6 +95,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                              multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width),
                                                              constant: 0))
         
+        
+        
         // make profile image round
         let image = cell?.profileImage
         image!.layer.masksToBounds = false
@@ -100,8 +104,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         image!.layer.cornerRadius = image!.frame.height/2
         image!.clipsToBounds = true
         
+        //cell?.descriptionLabel.sizeToFit()
+        
         return cell!
     }
+    
+    
+    
+    
     
     deinit {
         mainTableView.removeAllPullToRefresh()
