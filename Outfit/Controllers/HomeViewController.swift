@@ -123,6 +123,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.profileBorderView.layer.cornerRadius = (cell?.profileBorderView.frame.height)!/2
         
         
+        
+        
+        
+        
+        
         return cell!
     }
     

@@ -22,32 +22,32 @@
                         <rect key="frame" x="0.0" y="20" width="624" height="599"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5VK-Pg-yq3" userLabel="profile &amp; social buttons">
-                                <rect key="frame" x="0.0" y="0.0" width="624" height="90"/>
+                                <rect key="frame" x="0.0" y="0.0" width="624" height="49.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="left" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ce5-Wh-Kz0" userLabel="profile &amp; title">
-                                        <rect key="frame" x="0.0" y="7" width="135.5" height="76"/>
+                                    <stackView opaque="NO" contentMode="left" distribution="equalCentering" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ce5-Wh-Kz0" userLabel="profile &amp; title">
+                                        <rect key="frame" x="0.0" y="2" width="120.5" height="46"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qT2-tb-Fi0">
-                                                <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="example-profile-image" translatesAutoresizingMaskIntoConstraints="NO" id="jFs-xE-eEj">
-                                                        <rect key="frame" x="8" y="8" width="60" height="60"/>
+                                                        <rect key="frame" x="3" y="3" width="40" height="40"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="NQ2-Ih-x83"/>
-                                                            <constraint firstAttribute="height" constant="60" id="ahE-MP-o0W"/>
+                                                            <constraint firstAttribute="width" constant="40" id="NQ2-Ih-x83"/>
+                                                            <constraint firstAttribute="height" constant="40" id="ahE-MP-o0W"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="jFs-xE-eEj" firstAttribute="leading" secondItem="qT2-tb-Fi0" secondAttribute="leading" constant="8" id="0hy-8g-ig5"/>
-                                                    <constraint firstAttribute="bottom" secondItem="jFs-xE-eEj" secondAttribute="bottom" constant="8" id="3OA-HM-aGi"/>
-                                                    <constraint firstItem="jFs-xE-eEj" firstAttribute="top" secondItem="qT2-tb-Fi0" secondAttribute="top" constant="8" id="fmr-bc-FVl"/>
-                                                    <constraint firstAttribute="trailing" secondItem="jFs-xE-eEj" secondAttribute="trailing" constant="8" id="xsH-UD-IhV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jFs-xE-eEj" secondAttribute="trailing" constant="3" id="7Gf-z4-7yK"/>
+                                                    <constraint firstItem="jFs-xE-eEj" firstAttribute="leading" secondItem="qT2-tb-Fi0" secondAttribute="leading" constant="3" id="TLc-ED-adT"/>
+                                                    <constraint firstAttribute="bottom" secondItem="jFs-xE-eEj" secondAttribute="bottom" constant="3" id="XmD-Z9-IgD"/>
+                                                    <constraint firstItem="jFs-xE-eEj" firstAttribute="top" secondItem="qT2-tb-Fi0" secondAttribute="top" constant="3" id="f16-5C-1yH"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-b4-4BE">
-                                                <rect key="frame" x="76" y="23" width="59.5" height="30.5"/>
+                                                <rect key="frame" x="61" y="7.5" width="59.5" height="30.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Liolio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4y-RY-dUn">
                                                         <rect key="frame" x="0.0" y="0.0" width="42.5" height="20.5"/>
@@ -66,7 +66,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1rh-Dy-ve9" userLabel="likes &amp; comments">
-                                        <rect key="frame" x="503" y="37" width="121" height="16"/>
+                                        <rect key="frame" x="503" y="17" width="121" height="16"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vgV-4x-bxp" userLabel="likes">
                                                 <rect key="frame" x="0.0" y="0.0" width="44" height="16"/>
@@ -113,16 +113,13 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="KrO-83-WuG"/>
-                                </constraints>
                             </stackView>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" userLabel="postImageView" customClass="UIImageView">
-                                <rect key="frame" x="20.5" y="90" width="583" height="509"/>
+                                <rect key="frame" x="20.5" y="49.5" width="583" height="509"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-po-3DO">
-                                <rect key="frame" x="20" y="599" width="446" height="0.0"/>
+                                <rect key="frame" x="20" y="558.5" width="446" height="40.5"/>
                                 <string key="text">Unexpected is always the best way to go. If you can push that
 into your career, it’s always a win..."</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
