@@ -108,18 +108,15 @@
                                     <constraint firstAttribute="height" constant="60" id="KrO-83-WuG"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleAspectFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" userLabel="postImageView" customClass="UIImageView">
-                                <rect key="frame" x="0.0" y="60" width="519" height="199.5"/>
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" userLabel="postImageView" customClass="UIImageView">
+                                <rect key="frame" x="0.0" y="60" width="519" height="508"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-po-3DO">
-                                <rect key="frame" x="0.0" y="259.5" width="519" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="swv-Ni-DeJ"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-po-3DO">
+                                <rect key="frame" x="0.0" y="568" width="519" height="31"/>
                                 <string key="text">Unexpected is always the best way to go. If you can push that
 into your career, it’s always a win..."</string>
-                                <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="Galvji" family="Galvji" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -129,7 +126,7 @@ into your career, it’s always a win..."</string>
                             <constraint firstAttribute="trailing" secondItem="5VK-Pg-yq3" secondAttribute="trailing" id="JxT-BL-6a5"/>
                             <constraint firstItem="JfH-po-3DO" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="iCe-Sl-cOx"/>
                             <constraint firstItem="5VK-Pg-yq3" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" id="iEY-ns-9Jf"/>
-                            <constraint firstAttribute="bottom" secondItem="JfH-po-3DO" secondAttribute="bottom" constant="20" id="y5x-Qj-r5r"/>
+                            <constraint firstItem="JfH-po-3DO" firstAttribute="top" secondItem="FD7-VT-PGZ" secondAttribute="bottom" id="vnn-JQ-GIj"/>
                         </constraints>
                     </stackView>
                 </subviews>

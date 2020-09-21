@@ -77,15 +77,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.profileName.text = currentPost.user?.username
         
         
-        cell?.addConstraint(NSLayoutConstraint(item: cell?.postImageView,
-                                               attribute: .top,
-                                               relatedBy: .equal,
-                                               toItem: cell?.profileAndSocialStack ,
-                                               attribute: .bottom,
-                                               multiplier: 1,
-                                               constant: DK.spaceBetweenPostAndProfile))
         
-        cell?.addConstraint(NSLayoutConstraint(item: cell?.postImageView, attribute: .width, relatedBy: .equal, toItem: cell?.profileAndSocialStack, attribute: .width, multiplier: 1, constant: 0))
+        
+        cell?.addConstraint(NSLayoutConstraint(item: cell?.postImageView,
+                                               attribute: .width,
+                                               relatedBy: .equal,
+                                               toItem: cell?.profileAndSocialStack,
+                                               attribute: .width,
+                                               multiplier: 1,
+                                               constant: 0))
         
         cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell?.postImageView!,
                                                              attribute: .height,
@@ -94,6 +94,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                              attribute: .width,
                                                              multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width),
                                                              constant: 0))
+        
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell?.postImageView,
+                                               attribute: .top,
+                                               relatedBy: .equal,
+                                               toItem: cell?.profileAndSocialStack ,
+                                               attribute: .bottom,
+                                               multiplier: 1,
+                                               constant: DK.spaceBetweenPostAndProfile))
+        
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell?.descriptionLabel,
+                                               attribute: .top,
+                                               relatedBy: .equal,
+                                               toItem: cell?.postImageView,
+                                               attribute: .bottom,
+                                               multiplier: 1,
+                                               constant: 5))
         
         
         
@@ -104,7 +120,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         image!.layer.cornerRadius = image!.frame.height/2
         image!.clipsToBounds = true
         
-        //cell?.descriptionLabel.sizeToFit()
+        cell?.descriptionLabel.sizeToFit()
         
         return cell!
     }
