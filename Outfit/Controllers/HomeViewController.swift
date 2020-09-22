@@ -78,8 +78,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.postDocumentID = currentPost.postDocumentID
         
         
-        
-        
         /// profile and social stack
         cell!.contentView.addConstraint(NSLayoutConstraint(item: cell?.profileAndSocialStack, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: -DK.landrSpaceProfileStack))
         cell!.contentView.addConstraint(NSLayoutConstraint(item: cell?.profileAndSocialStack, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: DK.landrSpaceProfileStack))
@@ -123,6 +121,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell!.profileBorderView.layer.borderColor = UIColor.red.cgColor
         cell!.profileBorderView.layer.borderWidth = 1
         cell?.profileBorderView.layer.cornerRadius = (cell?.profileBorderView.frame.height)!/2
+        
+        
+        if(currentUser?.likedPosts!.contains((cell!.postDocumentID!)) == true){
+            cell!.likeButton.setImage(UIImage(named: "heart-filled"), for: .normal)
+            cell!.isLiked = true
+        } else {
+            cell!.likeButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+        }
         
         
         

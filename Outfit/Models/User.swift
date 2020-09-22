@@ -8,8 +8,11 @@
 
 import Foundation
 
+var currentUser: User?
+
 struct User {
     var userID: String
     var imageURL: String
     var username: String
+    var likedPosts: [String]?
 }

@@ -42,21 +42,23 @@ class HomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    
     @IBAction func likeButtonTapped(_ sender: UIButton) {
         /// 1 : change icon
         if (isLiked == false){
             isLiked = true
             likeButton.setImage(UIImage(named: "heart-filled"), for: .normal)
+            dbManager?.addOrRemovePostToLikedPosts(postDocumentID: self.postDocumentID!, action: "add")
+            dbManager?.updateLikeCount(of: self.postDocumentID!, do: "increment")
+            self.likeCount.text = "\(Int(self.likeCount.text!)! + 1)"
         } else {
             isLiked = false
             likeButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+            dbManager?.addOrRemovePostToLikedPosts(postDocumentID: self.postDocumentID!, action: "remove")
+            dbManager?.updateLikeCount(of: self.postDocumentID!, do: "decrement")
+            self.likeCount.text = "\(Int(self.likeCount.text!)! - 1)"
         }
         
-        print(self.postDocumentID)
         
-        /// 2 : put my current id in the list of likes from the post
-        
-        
-        /// 3 : When the post is displayed, check if it's liked from the user !
     }
 }

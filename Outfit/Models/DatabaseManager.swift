@@ -55,7 +55,7 @@ class DatabaseManager {
             self.db.collection("users").addDocument(data: [ // Ajoute un document à la collection
                 
                 "id": newUserMail,
-                "username":username,
+                "username":username
 
             ]) { (error) in
                 if let e = error {
@@ -264,5 +264,105 @@ class DatabaseManager {
         }
         return randomString
     }
+    
+    
+    
+    //MARK: - LIKE FUNCTIONS
+    func addOrRemovePostToLikedPosts(postDocumentID: String, action: String){
+        self.db.collection("users")
+            .whereField("id", isEqualTo: currentUserMail)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    // Some error occured
+                } else if querySnapshot!.documents.count != 1 {
+                    // Perhaps this is an error for you?
+                } else {
+                    let document = querySnapshot!.documents.first
+                    
+                    if (action == "add") {
+                        document!.reference.updateData([
+                            "likedPosts": FieldValue.arrayUnion([postDocumentID])
+                        ])
+                    } else if (action == "remove") {
+                        document!.reference.updateData([
+                            "likedPosts": FieldValue.arrayRemove([postDocumentID])
+                        ])
+                    }
+                }
+            }
+    }
+    
+    
+    func getCurrentUserInfos(){
+        print(currentUserMail)
+        
+        self.db.collection("users")
+            .whereField("id", isEqualTo: currentUserMail!)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    // Some error occured
+                } else if querySnapshot!.documents.count != 1 {
+                    // Perhaps this is an error for you?
+                } else {
+                    let document = querySnapshot!.documents.first
+                    let userID = document!["id"] as! String
+                    let userImageURL = document!["imageURL"] as! String
+                    let likedPosts = document!["likedPosts"] as! [String]
+                    let username = document!["username"] as! String
+                    
+                    currentUser = User(userID: userID, imageURL: userImageURL, username: username, likedPosts: likedPosts)
+                }
+            }
+    }
+    
+    func updateLikeCount(of documentID: String, do action: String){
+        let postRef = db.collection("posts").document(documentID)
+        
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let postDocument: DocumentSnapshot
+            do {
+                try postDocument = transaction.getDocument(postRef)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+
+            guard let oldPopulation = postDocument.data()?["likeCount"] as? Int else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(postDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+
+            // Note: this could be done without a transaction
+            //       by updating the population using FieldValue.increment()
+            
+            if (action == "increment"){
+                transaction.updateData(["likeCount": oldPopulation + 1], forDocument: postRef)
+                
+            } else if (action == "decrement"){
+                transaction.updateData(["likeCount": oldPopulation - 1], forDocument: postRef)
+            }
+            
+            
+            
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction failed: \(error)")
+            } else {
+                print("Transaction successfully committed!")
+                sharedDatabaseManager?.getCurrentUserInfos()
+            }
+        }
+
+
+    }
+    
     
 }

@@ -130,6 +130,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 // ...
                 print("userID", idTokenString)
                 sharedDatabaseManager = DatabaseManager(userID: idTokenString)
+                sharedDatabaseManager!.getCurrentUserInfos()
                 self.currentDBManager = DatabaseManager(userID: idTokenString)
                 self.currentDBManager!.delegate = self
                 
