@@ -141,7 +141,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let isReachingEnd = scrollView.contentOffset.y >= 0
+              && scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)
+        if (isReachingEnd){
+            print("You reached the end!")
+        }
+    }
     
     deinit {
         mainTableView.removeAllPullToRefresh()
