@@ -34,7 +34,11 @@ class DatabaseManager {
     let storage = Storage.storage()
     var delegate : DatabaseManagerDelegate?
     
+    
+    
     var currentPosts = [Post]()
+    
+    // Post fetching counters
     var postsWithUserDetailsFilled : Int = 0
     var postsWithProfileImagesFilled : Int = 0
     var completedPosts : Int = 0
@@ -44,41 +48,39 @@ class DatabaseManager {
             return mail
         } else {
             print("ERROR : couldn't get user mail")
-            return "nomail"
+            return nil
         }
         
     }
     
     func initialiseFirstTimeUser(username: String) {
-        //SAVE DATA to google firestore
         if let newUserMail = Auth.auth().currentUser?.email {
-            self.db.collection("users").addDocument(data: [ // Ajoute un document à la collection
+            self.db.collection("users").addDocument(data: [
                 
+                // ---------------- A COMPLETER
                 "id": newUserMail,
                 "username":username
 
             ]) { (error) in
                 if let e = error {
-                    print("There was an issue saving data to firestore, \(e)")
+                    print("Error trying to initialise first time user, \(e)")
                 } else {
-                    print("Successfully saved data.")
-                    DispatchQueue.main.async {
-                    }
+                    print("Successfully created first time user.")
                 }
             }
         }
     }
     
     
-    //MARK: - FETCHING POSTS
     
     
-    // Function used in login to create or not a new user.
+    
+    // Function that tells if a user already has a username created
     func userHasAUsername() {
         if let mail = currentUserMail {
             db.collection("users").whereField("id",isEqualTo: mail).getDocuments { (querySnapshot, err) in
                 if let err = err {
-                    print("error getting documents \(err)")
+                    print("Couldn't fetch user document \(err)")
                 } else {
                     let numberOfDocs = querySnapshot?.documents.count
                     let isUsernameCreated = numberOfDocs != 0
@@ -87,6 +89,8 @@ class DatabaseManager {
             }
         }
     }
+    
+    //MARK: - FETCHING POSTS
     
     
     func getAllPosts(){
@@ -113,7 +117,7 @@ class DatabaseManager {
         for i in 0...currentPosts.count - 1 {
             db.collection("users").whereField("id",isEqualTo: currentPosts[i].userID).getDocuments { (querySnapshot, err) in
                 if let err = err {
-                    print("error getting documents \(err)")
+                    print("error getting user document \(err)")
                 } else {
                     let data = querySnapshot?.documents[0].data()
                     let id = data!["id"] as! String
@@ -162,7 +166,7 @@ class DatabaseManager {
                     self.currentPosts[i] = newPost
                     self.completedPosts += 1
                     if(self.completedPosts == self.currentPosts.count){
-                        ///reset counters for next time 
+                        ///resets counters for next time
                         self.postsWithUserDetailsFilled  = 0
                         self.postsWithProfileImagesFilled  = 0
                         self.completedPosts = 0
