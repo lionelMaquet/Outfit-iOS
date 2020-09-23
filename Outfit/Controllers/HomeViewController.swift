@@ -38,17 +38,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.dbManager!.getAllPosts()
         }
         mainTableView.refresher(at: .top)?.setEnable(isEnabled: true)
-        
-        let searchBar = UISearchBar()
-        searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 70)
-        searchBar.delegate = self
-        searchBar.showsCancelButton = true
-        searchBar.searchBarStyle = UISearchBar.Style.default
-        searchBar.placeholder = " Search Here....."
-        searchBar.sizeToFit()
-        
-        //mainTableView.tableHeaderView = searchBar
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -73,19 +62,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.likeCount.text = "\(currentPost.likeCount)"
         cell?.postStyle.text = currentPost.styleName
         cell?.profileImage.image = currentPost.profileImage
-        cell?.postImageView.image = currentPost.postImage
+        cell?.postImageView.image = currentPost.postImage!
         cell?.profileName.text = currentPost.user?.username
         cell?.postDocumentID = currentPost.postDocumentID
         
         
         /// profile and social stack
-        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell?.profileAndSocialStack, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: -DK.landrSpaceProfileStack))
-        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell?.profileAndSocialStack, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: DK.landrSpaceProfileStack))
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.profileAndSocialStack!, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: -DK.landrSpaceProfileStack))
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.profileAndSocialStack!, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: DK.landrSpaceProfileStack))
         
         /// post image view
-        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell?.postImageView, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: 0))
-        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell?.postImageView, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: 0))
-        cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell?.postImageView!,
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: 0))
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: 0))
+        
+        // If we change this postImageView in contentView, it doesn't work. 
+        cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!,
                                                              attribute: .height,
                                                              relatedBy: .equal,
                                                              toItem: cell!.postImageView,
@@ -93,7 +84,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                              multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width),
                                                              constant: 0))
         
-        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell?.postImageView,
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!,
                                                attribute: .top,
                                                relatedBy: .equal,
                                                toItem: cell?.profileAndSocialStack ,
@@ -105,7 +96,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         /// description label
         cell?.descriptionLabel.sizeToFit()
-        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell?.descriptionLabel, attribute: .top, relatedBy: .equal, toItem: cell?.postImageView, attribute: .bottom, multiplier: 1, constant: DK.spaceBetweenPostImageAndDesc))
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.descriptionLabel!, attribute: .top, relatedBy: .equal, toItem: cell?.postImageView, attribute: .bottom, multiplier: 1, constant: DK.spaceBetweenPostImageAndDesc))
         
         
         

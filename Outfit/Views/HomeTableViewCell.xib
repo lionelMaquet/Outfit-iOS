@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,14 +19,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="624" height="639"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-23-zw1">
+                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-23-zw1">
                         <rect key="frame" x="0.0" y="20" width="624" height="599"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5VK-Pg-yq3" userLabel="profile &amp; social buttons">
-                                <rect key="frame" x="0.0" y="0.0" width="624" height="49.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5VK-Pg-yq3" userLabel="profile &amp; social buttons">
+                                <rect key="frame" x="0.0" y="0.0" width="624" height="46"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="left" distribution="equalCentering" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ce5-Wh-Kz0" userLabel="profile &amp; title">
-                                        <rect key="frame" x="0.0" y="2" width="120.5" height="46"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120.5" height="46"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qT2-tb-Fi0">
                                                 <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
@@ -47,7 +48,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-b4-4BE">
-                                                <rect key="frame" x="61" y="7.5" width="59.5" height="30.5"/>
+                                                <rect key="frame" x="61" y="8" width="59.5" height="30.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Liolio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4y-RY-dUn">
                                                         <rect key="frame" x="0.0" y="0.0" width="42.5" height="20.5"/>
@@ -66,7 +67,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1rh-Dy-ve9" userLabel="likes &amp; comments">
-                                        <rect key="frame" x="503" y="17" width="121" height="16"/>
+                                        <rect key="frame" x="503" y="15" width="121" height="16"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vgV-4x-bxp" userLabel="likes">
                                                 <rect key="frame" x="0.0" y="0.0" width="44" height="16"/>
@@ -118,11 +119,11 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" userLabel="postImageView" customClass="UIImageView">
-                                <rect key="frame" x="20.5" y="49.5" width="583" height="509"/>
+                                <rect key="frame" x="0.0" y="54" width="624" height="509"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-po-3DO">
-                                <rect key="frame" x="20" y="558.5" width="446" height="40.5"/>
+                                <rect key="frame" x="0.0" y="571" width="624" height="28"/>
                                 <string key="text">Unexpected is always the best way to go. If you can push that
 into your career, it’s always a win..."</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
@@ -130,12 +131,6 @@ into your career, it’s always a win..."</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="FD7-VT-PGZ" firstAttribute="centerX" secondItem="lhh-23-zw1" secondAttribute="centerX" id="1G8-qK-17J"/>
-                            <constraint firstAttribute="trailing" secondItem="JfH-po-3DO" secondAttribute="trailing" constant="20" id="Hua-1R-kD9"/>
-                            <constraint firstItem="JfH-po-3DO" firstAttribute="leading" secondItem="lhh-23-zw1" secondAttribute="leading" constant="20" id="iCe-Sl-cOx"/>
-                            <constraint firstItem="FD7-VT-PGZ" firstAttribute="width" secondItem="lhh-23-zw1" secondAttribute="width" multiplier="0.934853" id="neW-nw-q8Y"/>
-                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
