@@ -32,10 +32,12 @@ import Foundation
 
 
 struct Style {
+    // sexe, season and style are NUMBERS, used to describe the different choices
     var sexe: String
     var season: String
     var style: String
     
+    // from number to name
     var name : String {
         var name = ""
         
@@ -70,6 +72,7 @@ struct Style {
         return name
     }
     
+    // from name to number (used when creating a new post)
     static func fromEnglishStrings(style: String, sexe: String, season: String) -> Style {
         var styleFromString = ""
         var seasonFromString = ""

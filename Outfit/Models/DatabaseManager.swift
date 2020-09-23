@@ -53,6 +53,8 @@ class DatabaseManager {
         
     }
     
+    //MARK: - Creating new user
+    
     func initialiseFirstTimeUser(username: String) {
         if let newUserMail = Auth.auth().currentUser?.email {
             self.db.collection("users").addDocument(data: [
@@ -60,7 +62,7 @@ class DatabaseManager {
                 // ---------------- A COMPLETER
                 "id": newUserMail,
                 "username":username
-
+                
             ]) { (error) in
                 if let e = error {
                     print("Error trying to initialise first time user, \(e)")
@@ -90,6 +92,8 @@ class DatabaseManager {
         }
     }
     
+    
+    
     //MARK: - FETCHING POSTS
     
     
@@ -115,6 +119,7 @@ class DatabaseManager {
         }
         
         for i in 0...currentPosts.count - 1 {
+            // TO DO -> Transform this in function
             db.collection("users").whereField("id",isEqualTo: currentPosts[i].userID).getDocuments { (querySnapshot, err) in
                 if let err = err {
                     print("error getting user document \(err)")
@@ -275,7 +280,8 @@ class DatabaseManager {
     
     
     
-    //MARK: - LIKE FUNCTIONS
+    //MARK: - LIKING POSTS
+    
     func addOrRemovePostToLikedPosts(postDocumentID: String, action: String){
         self.db.collection("users")
             .whereField("id", isEqualTo: currentUserMail)
@@ -300,10 +306,56 @@ class DatabaseManager {
             }
     }
     
-    
-    func getCurrentUserInfos(){
-        print(currentUserMail)
+    func updateLikeCount(of documentID: String, do action: String){
+        let postRef = db.collection("posts").document(documentID)
         
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let postDocument: DocumentSnapshot
+            do {
+                try postDocument = transaction.getDocument(postRef)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+            
+            guard let oldPopulation = postDocument.data()?["likeCount"] as? Int else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(postDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            // Note: this could be done without a transaction
+            //       by updating the population using FieldValue.increment()
+            
+            if (action == "increment"){
+                transaction.updateData(["likeCount": oldPopulation + 1], forDocument: postRef)
+                
+            } else if (action == "decrement"){
+                transaction.updateData(["likeCount": oldPopulation - 1], forDocument: postRef)
+            }
+            
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction failed: \(error)")
+            } else {
+                print("Transaction successfully committed!")
+                sharedDatabaseManager?.getCurrentUserInfos()
+            }
+        }
+        
+        
+    }
+    
+    
+    //MARK: - GETTING USER INFOS
+    func getCurrentUserInfos(){
         self.db.collection("users")
             .whereField("id", isEqualTo: currentUserMail!)
             .getDocuments() { (querySnapshot, err) in
@@ -318,59 +370,13 @@ class DatabaseManager {
                     let likedPosts = document!["likedPosts"] as! [String]
                     let username = document!["username"] as! String
                     
+                    // global
                     currentUser = User(userID: userID, imageURL: userImageURL, username: username, likedPosts: likedPosts)
                 }
             }
     }
     
-    func updateLikeCount(of documentID: String, do action: String){
-        let postRef = db.collection("posts").document(documentID)
-        
-        db.runTransaction({ (transaction, errorPointer) -> Any? in
-            let postDocument: DocumentSnapshot
-            do {
-                try postDocument = transaction.getDocument(postRef)
-            } catch let fetchError as NSError {
-                errorPointer?.pointee = fetchError
-                return nil
-            }
-
-            guard let oldPopulation = postDocument.data()?["likeCount"] as? Int else {
-                let error = NSError(
-                    domain: "AppErrorDomain",
-                    code: -1,
-                    userInfo: [
-                        NSLocalizedDescriptionKey: "Unable to retrieve population from snapshot \(postDocument)"
-                    ]
-                )
-                errorPointer?.pointee = error
-                return nil
-            }
-
-            // Note: this could be done without a transaction
-            //       by updating the population using FieldValue.increment()
-            
-            if (action == "increment"){
-                transaction.updateData(["likeCount": oldPopulation + 1], forDocument: postRef)
-                
-            } else if (action == "decrement"){
-                transaction.updateData(["likeCount": oldPopulation - 1], forDocument: postRef)
-            }
-            
-            
-            
-            return nil
-        }) { (object, error) in
-            if let error = error {
-                print("Transaction failed: \(error)")
-            } else {
-                print("Transaction successfully committed!")
-                sharedDatabaseManager?.getCurrentUserInfos()
-            }
-        }
-
-
-    }
+    
     
     
 }
