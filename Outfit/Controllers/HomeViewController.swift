@@ -35,9 +35,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         ///refresher
         mainTableView.addPullToRefresh(refresher) {
-            self.dbManager?.getAllPosts()
+            self.dbManager!.getAllPosts()
         }
-        mainTableView.refresher(at: .top)?.setEnable(isEnabled: false)
+        mainTableView.refresher(at: .top)?.setEnable(isEnabled: true)
         
         let searchBar = UISearchBar()
         searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 70)
@@ -151,7 +151,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension HomeViewController: DatabaseManagerDelegate {
     func allPostsWereRetreived(posts: [Post]) {
         self.posts = posts
+        
         mainTableView.endRefreshing(at: .top)
+        print("should end refreshing!")
         mainTableView.reloadData()
     }
 }

@@ -162,6 +162,10 @@ class DatabaseManager {
                     self.currentPosts[i] = newPost
                     self.completedPosts += 1
                     if(self.completedPosts == self.currentPosts.count){
+                        ///reset counters for next time 
+                        self.postsWithUserDetailsFilled  = 0
+                        self.postsWithProfileImagesFilled  = 0
+                        self.completedPosts = 0
                         self.allPostsWereFilled()
                     }
                 }
