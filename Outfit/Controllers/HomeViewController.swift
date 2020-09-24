@@ -109,11 +109,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         image!.clipsToBounds = true
         
         ///Profile border view
-        cell!.profileBorderView.layer.borderColor = UIColor.red.cgColor
+        cell!.profileBorderView.layer.borderColor = UIColor.lightGray.cgColor
         cell!.profileBorderView.layer.borderWidth = 1
         cell?.profileBorderView.layer.cornerRadius = (cell?.profileBorderView.frame.height)!/2
         
-        
+        /// heart filled icon if post is already liked
         if(currentUser?.likedPosts!.contains((cell!.postDocumentID!)) == true){
             cell!.likeButton.setImage(UIImage(named: "heart-filled"), for: .normal)
             cell!.isLiked = true
