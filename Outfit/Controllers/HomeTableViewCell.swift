@@ -44,14 +44,13 @@ class HomeTableViewCell: UITableViewCell {
     
     
     @IBAction func likeButtonTapped(_ sender: UIButton) {
-        /// 1 : change icon
         if (isLiked == false){
             isLiked = true
             likeButton.setImage(UIImage(named: "heart-filled"), for: .normal)
             dbManager?.addOrRemovePostToLikedPosts(postDocumentID: self.postDocumentID!, action: "add")
             dbManager?.updateLikeCount(of: self.postDocumentID!, do: "increment")
             self.likeCount.text = "\(Int(self.likeCount.text!)! + 1)"
-        } else {
+        } else if (isLiked == true) {
             isLiked = false
             likeButton.setImage(UIImage(named: "heart-empty"), for: .normal)
             dbManager?.addOrRemovePostToLikedPosts(postDocumentID: self.postDocumentID!, action: "remove")
