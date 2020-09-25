@@ -114,11 +114,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.profileBorderView.layer.cornerRadius = (cell?.profileBorderView.frame.height)!/2
         
         /// heart filled icon if post is already liked
-        if(currentUser?.likedPosts!.contains((cell!.postDocumentID!)) == true){
+        if(currentUser?.likedPosts!.contains(cell!.postDocumentID!) == true){
             cell!.likeButton.setImage(UIImage(named: "heart-filled"), for: .normal)
             cell!.isLiked = true
         } else {
             cell!.likeButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+            cell!.isLiked = false
         }
         
         

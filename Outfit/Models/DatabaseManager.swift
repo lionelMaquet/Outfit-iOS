@@ -302,6 +302,8 @@ class DatabaseManager {
                             "likedPosts": FieldValue.arrayRemove([postDocumentID])
                         ])
                     }
+                    
+                    self.getCurrentUserInfos()
                 }
             }
     }
