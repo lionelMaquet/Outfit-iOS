@@ -29,23 +29,15 @@ class DescriptionViewController: UIViewController, UITextFieldDelegate {
         let pickedStyle = styleChoice.titleForSegment(at: styleChoice.selectedSegmentIndex)
         let pickedSexe = sexeChoice.titleForSegment(at: sexeChoice.selectedSegmentIndex)
         let pickedSeason = seasonChoice.titleForSegment(at: seasonChoice.selectedSegmentIndex)
-        
         let newStyle = Style.fromEnglishStrings(style: pickedStyle!, sexe: pickedSexe!, season: pickedSeason!)
-        
-        
         let newPost = Post(userID: (Auth.auth().currentUser?.email)!, user: nil, description: description!, commentCount: 0, likeCount: 0, imageURL: nil, style: newStyle.style, sexe: newStyle.sexe, season: newStyle.season)
         let imageToUpload = imagePicked
         
         sharedDatabaseManager?.uploadImageAndPost(post: newPost, image: imageToUpload!)
-        
         self.navigationController?.popToRootViewController(animated: true)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.textfield.resignFirstResponder()
     }
-    
-    
-
 }

@@ -13,12 +13,12 @@ import Kingfisher
 var sharedDatabaseManager: DatabaseManager?
 
 protocol DatabaseManagerDelegate {
-    func triedToRetreiveUsername(succeeded : Bool)
+    func isUsernameAlreadyCreated(succeeded : Bool)
     func allPostsWereRetreived(posts: [Post])
 }
 
 extension DatabaseManagerDelegate {
-    func triedToRetreiveUsername(succeeded : Bool){}
+    func isUsernameAlreadyCreated(succeeded : Bool){}
     func allPostsWereRetreived(posts: [Post]){}
 }
 
@@ -28,22 +28,17 @@ class DatabaseManager {
         self.userID = userID
     }
     
+    public var delegate : DatabaseManagerDelegate?
     
-    let userID: String
-    let db = Firestore.firestore()
-    let storage = Storage.storage()
-    var delegate : DatabaseManagerDelegate?
-    
-    
-    
-    var currentPosts = [Post]()
-    
+    private let userID: String
+    private let db = Firestore.firestore()
+    private let storage = Storage.storage()
+    private var currentPosts = [Post]()
     // Post fetching counters
-    var postsWithUserDetailsFilled : Int = 0
-    var postsWithProfileImagesFilled : Int = 0
-    var completedPosts : Int = 0
-    
-    var currentUserMail : String? {
+    private var postsWithUserDetailsFilled : Int = 0
+    private var postsWithProfileImagesFilled : Int = 0
+    private var completedPosts : Int = 0
+    public var currentUserMail : String? {
         if let mail = Auth.auth().currentUser?.email {
             return mail
         } else {
@@ -55,7 +50,7 @@ class DatabaseManager {
     
     //MARK: - Creating new user
     
-    func initialiseFirstTimeUser(username: String) {
+    public func initialiseFirstTimeUser(username: String) {
         if let newUserMail = Auth.auth().currentUser?.email {
             self.db.collection("users").addDocument(data: [
                 
@@ -78,7 +73,7 @@ class DatabaseManager {
     
     
     // Function that tells if a user already has a username created
-    func userHasAUsername() {
+    public func tryToFetchUsernameOfCurrentUser() {
         if let mail = currentUserMail {
             db.collection("users").whereField("id",isEqualTo: mail).getDocuments { (querySnapshot, err) in
                 if let err = err {
@@ -86,18 +81,14 @@ class DatabaseManager {
                 } else {
                     let numberOfDocs = querySnapshot?.documents.count
                     let isUsernameCreated = numberOfDocs != 0
-                    self.delegate?.triedToRetreiveUsername(succeeded : isUsernameCreated)
+                    self.delegate?.isUsernameAlreadyCreated(succeeded : isUsernameCreated)
                 }
             }
         }
     }
     
-    
-    
     //MARK: - FETCHING POSTS
-    
-    
-    func getAllPosts(){
+    public func getAllPosts(){
         DispatchQueue.global(qos: .utility).async {
             self.db.collection("posts").getDocuments { (snapshot, err) in
                 if let err = err {
@@ -113,7 +104,7 @@ class DatabaseManager {
     
     
     
-    func fillCurrentPostsUserDetails(){
+    private func fillCurrentPostsUserDetails(){
         guard currentPosts.count > 0 else {
             return
         }
@@ -140,7 +131,7 @@ class DatabaseManager {
         }
     }
     
-    func fillPostsWithProfileImages(){
+    private func fillPostsWithProfileImages(){
         for i in 0...currentPosts.count - 1 {
             let url = URL(string: self.currentPosts[i].user!.imageURL)
             DispatchQueue.global(qos: .utility).async {
@@ -159,7 +150,7 @@ class DatabaseManager {
         }
     }
     
-    func fillPostsWithPostImages(){
+    private func fillPostsWithPostImages(){
         for i in 0...currentPosts.count - 1 {
             let url = URL(string: self.currentPosts[i].imageURL!)
             DispatchQueue.global(qos: .utility).async {
@@ -182,13 +173,13 @@ class DatabaseManager {
         }
     }
     
-    func allPostsWereFilled(){
+    private func allPostsWereFilled(){
         self.delegate?.allPostsWereRetreived(posts: currentPosts)
     }
     
     
     
-    func transformDocumentsInPosts(docs : Any?) -> [Post] {
+    private func transformDocumentsInPosts(docs : Any?) -> [Post] {
         var posts : [Post] = []
         let documents = docs as! [QueryDocumentSnapshot]
         
@@ -216,14 +207,14 @@ class DatabaseManager {
     //MARK: - UPLOADING POSTS
     
     // uploads the image, then tiggers upload post filled with download url
-    func uploadImageAndPost(post: Post, image: UIImage){
+    public func uploadImageAndPost(post: Post, image: UIImage){
         uploadMedia(image: image) { (uploadedImageURL) in
             let completedPost = Post(userID: post.userID, user: post.user, description: post.description, commentCount: post.commentCount, likeCount: post.likeCount, imageURL: uploadedImageURL, style: post.style, sexe: post.sexe, season: post.season)
             self.uploadPost(post: completedPost)
         }
     }
     
-    func uploadPost(post: Post){
+    private func uploadPost(post: Post){
         
         self.db.collection("posts").addDocument(data: [ // Ajoute un document à la collection
             
@@ -250,7 +241,7 @@ class DatabaseManager {
         
     }
     
-    func uploadMedia(image: UIImage, completion: @escaping (_ url: String?) -> Void) {
+    private func uploadMedia(image: UIImage, completion: @escaping (_ url: String?) -> Void) {
         
         let storageRef = Storage.storage().reference().child("\(self.randomStringWithLength(len: 15)).jpg")
         if let uploadData = image.jpegData(compressionQuality: 0.15) {
@@ -267,7 +258,7 @@ class DatabaseManager {
         }
     }
     
-    func randomStringWithLength (len : Int) -> NSString {
+    private func randomStringWithLength (len : Int) -> NSString {
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let randomString : NSMutableString = NSMutableString(capacity: len)
         for _ in 0...len {
@@ -282,7 +273,17 @@ class DatabaseManager {
     
     //MARK: - LIKING POSTS
     
-    func addOrRemovePostToLikedPosts(postDocumentID: String, action: String){
+    public func handleLike(documentID : String, didLiked: Bool){
+        if (didLiked){
+            self.addOrRemovePostToLikedPosts(postDocumentID: documentID, action: "add")
+            self.updateLikeCount(of: documentID, do: "increment")
+        } else if (!didLiked){
+            self.addOrRemovePostToLikedPosts(postDocumentID: documentID, action: "remove")
+            self.updateLikeCount(of: documentID, do: "decrement")
+        }
+    }
+    
+    private func addOrRemovePostToLikedPosts(postDocumentID: String, action: String){
         self.db.collection("users")
             .whereField("id", isEqualTo: currentUserMail)
             .getDocuments() { (querySnapshot, err) in
@@ -308,7 +309,7 @@ class DatabaseManager {
             }
     }
     
-    func updateLikeCount(of documentID: String, do action: String){
+    private func updateLikeCount(of documentID: String, do action: String){
         let postRef = db.collection("posts").document(documentID)
         
         db.runTransaction({ (transaction, errorPointer) -> Any? in
@@ -357,7 +358,7 @@ class DatabaseManager {
     
     
     //MARK: - GETTING USER INFOS
-    func getCurrentUserInfos(){
+    public func getCurrentUserInfos(){
         self.db.collection("users")
             .whereField("id", isEqualTo: currentUserMail!)
             .getDocuments() { (querySnapshot, err) in

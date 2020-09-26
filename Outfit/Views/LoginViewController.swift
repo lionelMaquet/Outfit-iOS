@@ -14,35 +14,29 @@ import CryptoKit
 
 class LoginViewController: UIViewController {
     
-    
-    
-    
+    @IBOutlet weak var loginProviderStackView: UIStackView!
     
     let db = Firestore.firestore()
-    fileprivate var currentNonce : String?
     var currentDBManager : DatabaseManager?
-    
-    
-    @IBOutlet weak var loginProviderStackView: UIStackView!
+    fileprivate var currentNonce : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProviderLoginView()
     }
     
-    func setupProviderLoginView(){
+    private func setupProviderLoginView(){
         let authorizationButton = ASAuthorizationAppleIDButton()
         authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
         self.loginProviderStackView.addArrangedSubview(authorizationButton)
     }
     
-    @objc func handleAuthorizationAppleIDButtonPress() {
-        let nonce = randomNonceString()
-        currentNonce = nonce
+    @objc private func handleAuthorizationAppleIDButtonPress() {
+        currentNonce = randomNonceString()
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
+        request.nonce = sha256(currentNonce!)
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
@@ -136,7 +130,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 
                 // way of knowing if user has already initialised his account
                 // with a username
-                self.currentDBManager?.userHasAUsername()
+                self.currentDBManager?.tryToFetchUsernameOfCurrentUser()
             
             }
             
@@ -156,7 +150,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 extension LoginViewController: DatabaseManagerDelegate {
     
     
-    func triedToRetreiveUsername(succeeded: Bool) {
+    func isUsernameAlreadyCreated(succeeded: Bool) {
         if succeeded == true {
             self.performSegue(withIdentifier: "goToTabBarController", sender: self)
         } else {

@@ -47,14 +47,12 @@ class HomeTableViewCell: UITableViewCell {
         if (isLiked == false){
             isLiked = true
             likeButton.setImage(UIImage(named: "heart-filled"), for: .normal)
-            dbManager?.addOrRemovePostToLikedPosts(postDocumentID: self.postDocumentID!, action: "add")
-            dbManager?.updateLikeCount(of: self.postDocumentID!, do: "increment")
+            dbManager?.handleLike(documentID: self.postDocumentID!, didLiked: true)
             self.likeCount.text = "\(Int(self.likeCount.text!)! + 1)"
         } else if (isLiked == true) {
             isLiked = false
             likeButton.setImage(UIImage(named: "heart-empty"), for: .normal)
-            dbManager?.addOrRemovePostToLikedPosts(postDocumentID: self.postDocumentID!, action: "remove")
-            dbManager?.updateLikeCount(of: self.postDocumentID!, do: "decrement")
+            dbManager?.handleLike(documentID: self.postDocumentID!, didLiked: false)
             self.likeCount.text = "\(Int(self.likeCount.text!)! - 1)"
         }
         

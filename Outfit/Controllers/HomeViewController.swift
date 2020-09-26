@@ -30,8 +30,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.mainTableView.estimatedRowHeight = 300
         
         ///dbManager
-        self.dbManager!.getAllPosts()
         dbManager?.delegate = self
+        self.dbManager!.getAllPosts()
+        
         
         ///refresher
         mainTableView.addPullToRefresh(refresher) {
@@ -67,15 +68,41 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.postDocumentID = currentPost.postDocumentID
         
         
-        /// profile and social stack
-        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.profileAndSocialStack!, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: -DK.landrSpaceProfileStack))
-        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.profileAndSocialStack!, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: DK.landrSpaceProfileStack))
+        // profile and social stack
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.profileAndSocialStack!,
+                                                           attribute: .right,
+                                                           relatedBy: .equal,
+                                                           toItem: cell?.mainVerticalStack,
+                                                           attribute: .right,
+                                                           multiplier: 1,
+                                                           constant: -DK.landrSpaceProfileStack))
         
-        /// post image view
-        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!, attribute: .left, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .left, multiplier: 1, constant: 0))
-        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!, attribute: .right, relatedBy: .equal, toItem: cell?.mainVerticalStack, attribute: .right, multiplier: 1, constant: 0))
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.profileAndSocialStack!,
+                                                           attribute: .left,
+                                                           relatedBy: .equal,
+                                                           toItem: cell?.mainVerticalStack,
+                                                           attribute: .left,
+                                                           multiplier: 1,
+                                                           constant: DK.landrSpaceProfileStack))
         
-        // If we change this postImageView in contentView, it doesn't work. 
+        // post image view
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!,
+                                                           attribute: .left,
+                                                           relatedBy: .equal,
+                                                           toItem: cell?.mainVerticalStack,
+                                                           attribute: .left,
+                                                           multiplier: 1,
+                                                           constant: 0))
+        
+        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!,
+                                                           attribute: .right,
+                                                           relatedBy: .equal,
+                                                           toItem: cell?.mainVerticalStack,
+                                                           attribute: .right,
+                                                           multiplier: 1,
+                                                           constant: 0))
+        
+        /// If we change this postImageView in contentView, it doesn't work.
         cell?.postImageView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!,
                                                              attribute: .height,
                                                              relatedBy: .equal,
@@ -94,9 +121,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         
-        /// description label
+        // description label
         cell?.descriptionLabel.sizeToFit()
-        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.descriptionLabel!, attribute: .top, relatedBy: .equal, toItem: cell?.postImageView, attribute: .bottom, multiplier: 1, constant: DK.spaceBetweenPostImageAndDesc))
+        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.descriptionLabel!,
+                                                           attribute: .top,
+                                                           relatedBy: .equal,
+                                                           toItem: cell?.postImageView,
+                                                           attribute: .bottom,
+                                                           multiplier: 1,
+                                                           constant: DK.spaceBetweenPostImageAndDesc))
         
         
         
@@ -122,12 +155,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell!.isLiked = false
         }
         
-        
-        
-        
-        
-        
-        
         return cell!
     }
     
@@ -149,9 +176,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension HomeViewController: DatabaseManagerDelegate {
     func allPostsWereRetreived(posts: [Post]) {
         self.posts = posts
-        
         mainTableView.endRefreshing(at: .top)
-        print("should end refreshing!")
         mainTableView.reloadData()
     }
 }
