@@ -17,7 +17,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var profileBorderView: UIView!
     @IBOutlet weak var mainVerticalStack: UIStackView!
     @IBOutlet weak var commentButton: UIButton!
-    @IBOutlet weak var profileAndSocialStack: UIStackView!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var commentCount: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
