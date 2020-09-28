@@ -207,6 +207,9 @@ extension HomeViewController: DatabaseManagerDelegate {
 }
 
 extension HomeViewController: HomeTableViewCellDelegate {
+    func goToProfile(user: User) {
+        self.performSegue(withIdentifier: "goToProfile", sender: self)
+    }
 }
 
 

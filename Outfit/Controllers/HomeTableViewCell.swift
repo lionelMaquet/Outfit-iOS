@@ -10,6 +10,7 @@ import UIKit
 import ImageSlideshow
 
 protocol HomeTableViewCellDelegate {
+    func goToProfile(user: User)
 }
 
 class HomeTableViewCell: UITableViewCell {
@@ -42,6 +43,7 @@ class HomeTableViewCell: UITableViewCell {
     
     @objc func profileTapped(){
         print("profile image was tapped")
+        self.delegate!.goToProfile(user: (self.post?.user)!)
     }
     
     
