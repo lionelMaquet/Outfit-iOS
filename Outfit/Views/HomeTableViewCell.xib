@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-23-zw1">
-                        <rect key="frame" x="0.0" y="45" width="732" height="612"/>
+                        <rect key="frame" x="0.0" y="45" width="732" height="632"/>
                         <subviews>
                             <view contentMode="scaleAspectFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FD7-VT-PGZ" userLabel="postImageView" customClass="UIImageView">
-                                <rect key="frame" x="0.0" y="13" width="732" height="550.5"/>
+                                <rect key="frame" x="0.0" y="14" width="732" height="553.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" distribution="equalCentering" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ce5-Wh-Kz0" userLabel="profile &amp; title">
                                         <rect key="frame" x="0.0" y="-45" width="732" height="60"/>
@@ -60,6 +60,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="qT2-tb-Fi0" firstAttribute="centerX" secondItem="Ce5-Wh-Kz0" secondAttribute="centerX" id="kWf-g2-kpN"/>
                                             <constraint firstItem="B4y-RY-dUn" firstAttribute="leading" secondItem="qT2-tb-Fi0" secondAttribute="trailing" constant="10" id="ouv-zn-FaA"/>
@@ -67,7 +68,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1rh-Dy-ve9" userLabel="likes &amp; comments">
-                                        <rect key="frame" x="557" y="502.5" width="175" height="48"/>
+                                        <rect key="frame" x="557" y="505.5" width="175" height="48"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vgV-4x-bxp" userLabel="likes">
                                                 <rect key="frame" x="17" y="14" width="49" height="20"/>
@@ -131,21 +132,30 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfH-po-3DO">
-                                <rect key="frame" x="0.0" y="571.5" width="732" height="40.5"/>
+                                <rect key="frame" x="0.0" y="575.5" width="732" height="40.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Unexpected is always the best way to go. If you can push that
 into your career, it’s always a win..."</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qn3-pa-hdO" userLabel="separator">
+                                <rect key="frame" x="0.0" y="624" width="732" height="8"/>
+                                <color key="backgroundColor" red="0.90315940451624177" green="0.89847436287691484" blue="0.90944241751269039" alpha="0.65937285958904102" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="zYN-3C-le4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="FD7-VT-PGZ" firstAttribute="top" secondItem="lhh-23-zw1" secondAttribute="top" constant="10" id="GtY-Xy-vGi"/>
                         </constraints>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="lhh-23-zw1" secondAttribute="bottom" constant="20" id="1KI-8U-Ub2"/>
+                    <constraint firstAttribute="bottom" secondItem="lhh-23-zw1" secondAttribute="bottom" id="1KI-8U-Ub2"/>
                     <constraint firstAttribute="trailing" secondItem="lhh-23-zw1" secondAttribute="trailing" id="XXV-PI-FDs"/>
                     <constraint firstItem="lhh-23-zw1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="45" id="fc7-Ra-I4B"/>
                     <constraint firstItem="lhh-23-zw1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gy7-X6-U7J"/>
