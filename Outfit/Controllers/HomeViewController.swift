@@ -94,6 +94,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                            multiplier: 1,
                                                            constant: 0))
         
+        
+        
         cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!,
                                                            attribute: .right,
                                                            relatedBy: .equal,
@@ -165,8 +167,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell?.isBookmarked = false
         }
         
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.profileTapped))
+//        cell!.profileImage.addGestureRecognizer(tapGesture)
+        
+        for view in cell!.mainVerticalStack.arrangedSubviews {
+            cell?.mainVerticalStack.sendSubviewToBack(view)
+        }
+        
         return cell!
+        
     }
+    
+//    @objc func profileTapped(){
+//
+//    }
+    
     
     
     

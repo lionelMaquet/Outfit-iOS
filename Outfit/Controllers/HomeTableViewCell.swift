@@ -34,9 +34,17 @@ class HomeTableViewCell: UITableViewCell {
     
     var delegate : HomeTableViewCellDelegate?
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileTapped)))
     }
+    
+    @objc func profileTapped(){
+        print("profile image was tapped")
+    }
+    
+    
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -67,7 +75,10 @@ class HomeTableViewCell: UITableViewCell {
             dbManager?.handleLike(documentID: self.postDocumentID!, didLiked: false)
             self.likeCount.text = "\(Int(self.likeCount.text!)! - 1)"
         }
-        
-        
     }
+    
+    
+    
+    
+    
 }
