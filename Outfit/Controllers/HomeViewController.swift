@@ -67,24 +67,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell?.profileName.text = currentPost.user?.username
         cell?.postDocumentID = currentPost.postDocumentID
         
-        
-//        // profile and social stack
-//        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.profileAndSocialStack!,
-//                                                           attribute: .right,
-//                                                           relatedBy: .equal,
-//                                                           toItem: cell?.mainVerticalStack,
-//                                                           attribute: .right,
-//                                                           multiplier: 1,
-//                                                           constant: -DK.landrSpaceProfileStack))
-//
-//        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.profileAndSocialStack!,
-//                                                           attribute: .left,
-//                                                           relatedBy: .equal,
-//                                                           toItem: cell?.mainVerticalStack,
-//                                                           attribute: .left,
-//                                                           multiplier: 1,
-//                                                           constant: DK.landrSpaceProfileStack))
-//
         // post image view
         cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!,
                                                            attribute: .left,
@@ -112,16 +94,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                              attribute: .width,
                                                              multiplier: (cell!.postImageView.image!.size.height) / (cell!.postImageView.image!.size.width),
                                                              constant: 0))
-        
-//        cell?.contentView.addConstraint(NSLayoutConstraint(item: cell!.postImageView!,
-//                                               attribute: .top,
-//                                               relatedBy: .equal,
-//                                               toItem: cell?.profileAndSocialStack ,
-//                                               attribute: .bottom,
-//                                               multiplier: 1,
-//                                               constant: DK.spaceBetweenPostAndProfile))
-        
-        
+           
         
         // description label
         cell?.descriptionLabel.sizeToFit()
@@ -167,9 +140,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell?.isBookmarked = false
         }
         
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.profileTapped))
-//        cell!.profileImage.addGestureRecognizer(tapGesture)
-        
         for view in cell!.mainVerticalStack.arrangedSubviews {
             cell?.mainVerticalStack.sendSubviewToBack(view)
         }
@@ -178,9 +148,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-//    @objc func profileTapped(){
-//
-//    }
     
     
     
