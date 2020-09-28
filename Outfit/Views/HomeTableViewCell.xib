@@ -117,7 +117,7 @@ into your career, it’s always a win..."</string>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3I4-l4-XK6" userLabel="comments">
-                                        <rect key="frame" x="99" y="14" width="616" height="20"/>
+                                        <rect key="frame" x="99" y="14" width="566" height="20"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAQ-cP-K6C">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -130,7 +130,7 @@ into your career, it’s always a win..."</string>
                                                 </state>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="100000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpo-C3-JBn">
-                                                <rect key="frame" x="26" y="2" width="590" height="16"/>
+                                                <rect key="frame" x="26" y="2" width="540" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" red="0.78823529411764703" green="0.78431372549019607" blue="0.78431372549019607" alpha="0.65937285958904102" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="highlightedColor"/>
@@ -141,6 +141,17 @@ into your career, it’s always a win..."</string>
                                             <constraint firstItem="lAQ-cP-K6C" firstAttribute="leading" secondItem="3I4-l4-XK6" secondAttribute="leading" id="xTa-vI-Afp"/>
                                         </constraints>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ee4-Nn-dpX">
+                                        <rect key="frame" x="695" y="14" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Q1c-o1-hiH"/>
+                                            <constraint firstAttribute="width" constant="20" id="tad-8M-T2P"/>
+                                        </constraints>
+                                        <state key="normal" image="bookmark-empty"/>
+                                        <connections>
+                                            <action selector="bookmarkButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="H8c-dE-V5N"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -172,6 +183,7 @@ into your career, it’s always a win..."</string>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bookmarkButton" destination="Ee4-Nn-dpX" id="3Ix-xH-6Ap"/>
                 <outlet property="commentButton" destination="lAQ-cP-K6C" id="5X6-1e-0PY"/>
                 <outlet property="commentCount" destination="gpo-C3-JBn" id="m5B-po-VXx"/>
                 <outlet property="descriptionLabel" destination="JfH-po-3DO" id="ytY-kZ-2fx"/>
@@ -188,6 +200,7 @@ into your career, it’s always a win..."</string>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="bookmark-empty" width="64" height="64"/>
         <image name="comment-icon" width="512" height="512"/>
         <image name="example-profile-image" width="1353" height="1354"/>
         <image name="heart-empty" width="512" height="512"/>

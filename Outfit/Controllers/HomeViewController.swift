@@ -155,6 +155,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell!.isLiked = false
         }
         
+        
+        /// bookmark filled icon if post is bookmarked
+        if(currentUser?.bookmarkedPosts!.contains((cell?.postDocumentID)!) == true){
+            cell?.bookmarkButton.setImage(UIImage(named: "bookmark-filled"), for: .normal)
+            cell?.isBookmarked = true
+        } else {
+            cell?.bookmarkButton.setImage(UIImage(named: "bookmark-empty"), for: .normal)
+            cell?.isBookmarked = false
+        }
+        
         return cell!
     }
     

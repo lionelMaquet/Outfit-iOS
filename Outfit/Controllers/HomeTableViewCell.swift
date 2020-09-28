@@ -25,10 +25,12 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var bookmarkButton: UIButton!
     var postDocumentID: String?
     var isLiked: Bool = false
     var dbManager: DatabaseManager?
     var post: Post?
+    var isBookmarked: Bool = false
     
     var delegate : HomeTableViewCellDelegate?
     
@@ -41,6 +43,17 @@ class HomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    @IBAction func bookmarkButtonTapped(_ sender: UIButton) {
+        if (isBookmarked == false){
+            isBookmarked = true
+            bookmarkButton.setImage(UIImage(named: "bookmark-filled"), for: .normal)
+            dbManager?.handleBookmark(documentID: self.postDocumentID!, didBookmark: true)
+        } else if (isBookmarked == true) {
+            isBookmarked = false
+            bookmarkButton.setImage(UIImage(named: "bookmark-empty"), for: .normal)
+            dbManager?.handleBookmark(documentID: self.postDocumentID!, didBookmark: false)
+        }
+    }
     
     @IBAction func likeButtonTapped(_ sender: UIButton) {
         if (isLiked == false){

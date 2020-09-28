@@ -356,6 +356,42 @@ class DatabaseManager {
         
     }
     
+    //MARK: - BOOKMARKING POSTS
+    
+    public func handleBookmark(documentID : String, didBookmark: Bool){
+        if (didBookmark){
+            self.addOrRemovePostToBookmarkedPosts(postDocumentID: documentID, action: "add")
+        } else if (!didBookmark){
+            self.addOrRemovePostToBookmarkedPosts(postDocumentID: documentID, action: "remove")
+        }
+    }
+    
+    private func addOrRemovePostToBookmarkedPosts(postDocumentID: String, action: String){
+        self.db.collection("users")
+            .whereField("id", isEqualTo: currentUserMail)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    // Some error occured
+                } else if querySnapshot!.documents.count != 1 {
+                    // Perhaps this is an error for you?
+                } else {
+                    let document = querySnapshot!.documents.first
+                    
+                    if (action == "add") {
+                        document!.reference.updateData([
+                            "bookmarkedPosts": FieldValue.arrayUnion([postDocumentID])
+                        ])
+                    } else if (action == "remove") {
+                        document!.reference.updateData([
+                            "bookmarkedPosts": FieldValue.arrayRemove([postDocumentID])
+                        ])
+                    }
+                    
+                    self.getCurrentUserInfos()
+                }
+            }
+    }
+    
     
     //MARK: - GETTING USER INFOS
     public func getCurrentUserInfos(){
@@ -372,9 +408,10 @@ class DatabaseManager {
                     let userImageURL = document!["imageURL"] as! String
                     let likedPosts = document!["likedPosts"] as! [String]
                     let username = document!["username"] as! String
+                    let bookmarkedPosts = document!["bookmarkedPosts"] as! [String]
                     
                     // global
-                    currentUser = User(userID: userID, imageURL: userImageURL, username: username, likedPosts: likedPosts)
+                    currentUser = User(userID: userID, imageURL: userImageURL, username: username, likedPosts: likedPosts, bookmarkedPosts : bookmarkedPosts)
                 }
             }
     }

@@ -15,4 +15,5 @@ struct User {
     var imageURL: String
     var username: String
     var likedPosts: [String]?
+    var bookmarkedPosts: [String]?
 }
