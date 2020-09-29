@@ -97,14 +97,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
            
         
         // description label
-        cell?.descriptionLabel.sizeToFit()
+        /*cell?.descriptionLabel.sizeToFit()
         cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.descriptionLabel!,
                                                            attribute: .top,
                                                            relatedBy: .equal,
                                                            toItem: cell?.postImageView,
                                                            attribute: .bottom,
                                                            multiplier: 1,
-                                                           constant: DK.spaceBetweenPostImageAndDesc))
+                                                           constant: DK.spaceBetweenPostImageAndDesc))*/
         
         
         
