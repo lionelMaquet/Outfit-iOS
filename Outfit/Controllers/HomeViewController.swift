@@ -96,17 +96,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                              constant: 0))
            
         
-        // description label
-        /*cell?.descriptionLabel.sizeToFit()
-        cell!.contentView.addConstraint(NSLayoutConstraint(item: cell!.descriptionLabel!,
-                                                           attribute: .top,
-                                                           relatedBy: .equal,
-                                                           toItem: cell?.postImageView,
-                                                           attribute: .bottom,
-                                                           multiplier: 1,
-                                                           constant: DK.spaceBetweenPostImageAndDesc))*/
-        
-        
+    
         
         // make profile image round
         let image = cell?.profileImage
@@ -147,9 +137,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell!
         
     }
-    
-    
-    
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
