@@ -42,12 +42,8 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @objc func profileTapped(){
-        print("profile image was tapped")
         self.delegate!.goToProfile(user: (self.post?.user)!)
     }
-    
-    
-    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
